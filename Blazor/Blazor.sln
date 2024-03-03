@@ -7,6 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssembly", "Blazor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServer", "BlazorServer\BlazorServer.csproj", "{B8F99992-5DA5-4B5C-A1A6-3B388E473897}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModeloDeHospedagem", "ModeloDeHospedagem", "{81E624BA-C2A3-4288-A18A-1C06DC96A5E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModeloUnificado", "ModeloUnificado", "{5FA199FD-E528-41DA-888F-16468A89F6EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor8", "Blazor8\Blazor8\Blazor8.csproj", "{7E754E80-8209-486F-B285-F89344398513}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor8.Client", "Blazor8\Blazor8.Client\Blazor8.Client.csproj", "{4F883BC1-1B53-47A8-86F9-4AFC69DA2E74}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +29,23 @@ Global
 		{B8F99992-5DA5-4B5C-A1A6-3B388E473897}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8F99992-5DA5-4B5C-A1A6-3B388E473897}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8F99992-5DA5-4B5C-A1A6-3B388E473897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E754E80-8209-486F-B285-F89344398513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E754E80-8209-486F-B285-F89344398513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E754E80-8209-486F-B285-F89344398513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E754E80-8209-486F-B285-F89344398513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F883BC1-1B53-47A8-86F9-4AFC69DA2E74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F883BC1-1B53-47A8-86F9-4AFC69DA2E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F883BC1-1B53-47A8-86F9-4AFC69DA2E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F883BC1-1B53-47A8-86F9-4AFC69DA2E74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3972A03-17B4-46D2-9728-4C6802DA345E} = {81E624BA-C2A3-4288-A18A-1C06DC96A5E5}
+		{B8F99992-5DA5-4B5C-A1A6-3B388E473897} = {81E624BA-C2A3-4288-A18A-1C06DC96A5E5}
+		{7E754E80-8209-486F-B285-F89344398513} = {5FA199FD-E528-41DA-888F-16468A89F6EA}
+		{4F883BC1-1B53-47A8-86F9-4AFC69DA2E74} = {5FA199FD-E528-41DA-888F-16468A89F6EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {04E8EE35-013A-48C6-A28D-04D7B44F0D85}
