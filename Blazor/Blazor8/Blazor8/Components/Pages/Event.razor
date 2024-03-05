@@ -1,0 +1,25 @@
+﻿@page "/event"
+@rendermode InteractiveServer
+<h3>Event</h3>
+
+<div>
+    <button class="btn btn-secondary" onclick="javascript:alert('Clicou no botão JavaScript')">Clique-me (JS)</button>
+    <button class="btn btn-primary" @onclick="ClickButton">Clique-me (Blazor)</button>
+    @TextoOne
+</div>
+<div class="mt-3">
+    <button class="btn btn-success" @onclick="@((e) => { TextoTwo=$"Posição do clique: x={e.ScreenX} y={e.ScreenY}"; })">Clique-me (Blazor-Inline)</button>
+    <br />
+    @TextoTwo
+</div>
+
+
+
+@code {
+    private string TextoOne { get; set; } = string.Empty;
+    private string TextoTwo { get; set; } = string.Empty;
+    public void ClickButton(MouseEventArgs e)
+    {
+        TextoOne = $"Posição do clique: x={e.ScreenX} y={e.ScreenY}";
+    }
+}
