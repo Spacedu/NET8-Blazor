@@ -4,9 +4,43 @@
 
 <h3>Component</h3>
 
-<BootstrapCard EventClick="@((e) => EventClickCard1(e))" Title="Título do Cartão 1" Description="Este é um cartão" ButtonText="Comprar" />
+<div class="row">
+    <div class="col-md-3">
+        <BootstrapCard EventClick="@((e) => EventClickCard1(e))"
+                       Title="Título do Cartão 1"
+                       Description="Este é um cartão"
+                       ButtonText="Comprar" />
+    </div>
+    <div class="col-md-3">
 
-<BootstrapCard EventClick="EventClickCard2" Title="Título do Cartão 2" Description="Este é um cartão" ButtonText="Comprar" />
+        <BootstrapCard EventClick="EventClickCard2"
+                       Title="Título do Cartão 2"
+                       Description="Este é um cartão"
+                       ButtonText="Comprar" />
+    </div>
+    <div class="col-md-3">
+        <BootstrapCard>
+            <h4>Eu sou o ChildContent</h4>
+            <p>Olá mundo!</p>
+            <button @onclick="EventClickCard1" class="btn btn-primary">Clique</button>
+        </BootstrapCard>
+    </div>
+    <div class="col-md-3">
+        <BootstrapCard>
+            <CardHeader>
+                Cabeçalho
+            </CardHeader>
+            <CardText>
+                Conteúdo
+            </CardText>
+            <CardFooter>
+                Rodapé
+            </CardFooter>
+        </BootstrapCard>
+    </div>
+</div>
+
+
 
 @code {
     public void EventClickCard1(MouseEventArgs a)
