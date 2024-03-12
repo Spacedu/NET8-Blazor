@@ -6,7 +6,7 @@
     <div class="card-body">
         <h5 class="card-title">@Title</h5>
         <p class="card-text">@Description</p>
-        <button class="btn btn-primary" @onclick="OnClick">@ButtonText</button>
+        <button class="btn btn-primary" @onclick="EventClick">@ButtonText</button>
     </div>
 </div>
 
@@ -19,6 +19,9 @@
 
     [Parameter]
     public string? ButtonText { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> EventClick { get; set; }
 
     public void OnClick()
     {

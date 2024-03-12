@@ -1,9 +1,20 @@
-﻿@page "/component"
+﻿@inject IJSRuntime JS
+@rendermode InteractiveServer
+@page "/component"
 
 <h3>Component</h3>
 
-<BootstrapCard Title="Título do Cartão" Description="Este é um cartão" ButtonText="Comprar" />
+<BootstrapCard EventClick="@((e) => EventClickCard1(e))" Title="Título do Cartão 1" Description="Este é um cartão" ButtonText="Comprar" />
+
+<BootstrapCard EventClick="EventClickCard2" Title="Título do Cartão 2" Description="Este é um cartão" ButtonText="Comprar" />
 
 @code {
-
+    public void EventClickCard1(MouseEventArgs a)
+    {
+        JS.InvokeVoidAsync("alert", "Card 1 - " + a.ScreenY);
+    }
+    public void EventClickCard2()
+    {
+        JS.InvokeVoidAsync("alert", "Card 2");
+    }
 }
