@@ -1,0 +1,11 @@
+﻿<div class="card-header">
+    @CardHeader
+    <button class="btn btn-primary">@CardHeaderButtonText</button>
+</div>
+@code {
+    [Parameter]
+    public RenderFragment CardHeader { get; set; }
+
+    [CascadingParameter(Name = "CardHeaderButtonText")]
+    public string? CardHeaderButtonText { get; set; }
+}

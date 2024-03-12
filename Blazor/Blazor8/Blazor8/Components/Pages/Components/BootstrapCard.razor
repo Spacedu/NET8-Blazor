@@ -1,9 +1,7 @@
 ﻿@rendermode InteractiveServer
 <div class="card" style="width: 18rem;">
     @if(CardHeader != null){
-        <div class="card-header">
-            @CardHeader
-        </div>
+        <BoostrapCardHeader CardHeader="CardHeader" />
     }
     @if(ChildContent != null || Title != null)
     {
