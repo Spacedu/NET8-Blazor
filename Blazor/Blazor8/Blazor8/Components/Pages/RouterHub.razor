@@ -4,17 +4,29 @@
 @page "/routing/{*all}"
 @attribute [Route(RoutersConstants.RouterHub)]
 
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+
 <h3>RouterHub</h3>
 <div>
-    Todos: @All (QueryString: @Nome - @Nome2)
-    <br />
     Grupo: @Group
     <br />
     Id: @Id
+    <br />
+    Todos: @All
+    <br />
+    QueryString: @Nome - @Nome2
+    <br />
+    <input class="form-control" @bind="Router" />
+    <br />
+    <button class="btn btn-primary" @onclick="OnClick">Navegar</button>
 </div>
 
 
 @code {
+
+    public string? Router { get; set; }
+
     [Parameter]
     public string? All { get; set; }
 
@@ -29,4 +41,10 @@
 
     [SupplyParameterFromQuery(Name = "dono")]
     public string? Nome2 { get; set; }
+
+    public void OnClick()
+    {
+        if(!string.IsNullOrWhiteSpace(Router))
+            Navigation.NavigateTo(Router);
+    }
 }
