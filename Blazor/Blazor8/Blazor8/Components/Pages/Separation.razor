@@ -1,4 +1,5 @@
 ﻿@page "/separation"
+@rendermode InteractiveServer
 <h3>Separation</h3>
 
 <div>
@@ -7,6 +8,12 @@
 <div>
     <p>C#: @DateTime.Now - @Texto</p>
 </div>
-<script>
-    alert("eu sou JS");
-</script>
+<div>
+    <button class="btn btn-success" @onclick="CarregarJS">Carregar JS</button>
+    <button class="btn btn-primary" onclick="javascript:alert('Clicou no botão JS Inline');">
+        Botão JS (Inline)
+    </button>
+    <button class="btn btn-primary" onclick="ShowMessage()">
+        Botão JS
+    </button>
+</div>
