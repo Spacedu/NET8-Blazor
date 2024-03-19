@@ -9,7 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-builder.Services.AddTransient<NumeroAleatorio>();
+builder.Services.AddSingleton<NumeroAleatorio>();
 
 var app = builder.Build();
 
