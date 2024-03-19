@@ -10,6 +10,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddSingleton<NumeroAleatorio>();
+builder.Services.AddSingleton<IMensagem, MensagemWhatsApp>();
+
 
 var app = builder.Build();
 
