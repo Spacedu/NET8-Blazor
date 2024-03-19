@@ -1,5 +1,6 @@
 using Blazor8.Client.Pages;
 using Blazor8.Components;
+using Blazor8.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddTransient<NumeroAleatorio>();
 
 var app = builder.Build();
 
