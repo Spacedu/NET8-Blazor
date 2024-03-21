@@ -8,7 +8,15 @@
         @Mensagem
     </div>
 }
-<EditForm Model="Usuario" OnSubmit="Acessar" FormName="login">
+@if (MensagemErro is not null)
+{
+    <div class="alert alert-danger">
+        @MensagemErro
+    </div>
+}
+@* OnSubmit="Acessar" *@
+<EditForm Model="Usuario" OnInvalidSubmit="ValidacaoErro" OnValidSubmit="EnviarDadosComValidacaoSucesso" FormName="login">
+
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -31,6 +39,7 @@
 
 @code {
     public string? Mensagem { get; set; }
+    public string? MensagemErro { get; set; }
     private Usuario Usuario { get; set; } = new Usuario();
 
     public void Acessar(EditContext context)
@@ -41,5 +50,13 @@
             //TODO - Consultar DB | Consultar API
             Mensagem = $"Acessando.....Email: {Usuario.Email} - Senha: {Usuario.Senha}";
         }
+    }
+    public void EnviarDadosComValidacaoSucesso(EditContext context)
+    {
+        Mensagem = $"Dados enviados com sucesso. Validação OK.";
+    }
+    public void ValidacaoErro()
+    {
+        MensagemErro = "Validação com erro";
     }
 }
