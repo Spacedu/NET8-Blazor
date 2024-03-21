@@ -11,14 +11,17 @@
 <EditForm Model="Usuario" OnSubmit="Acessar" FormName="login">
     <DataAnnotationsValidator />
     <ValidationSummary />
+
     <div class="row">
         <div class="col-12">
             <label for="email">E-mail</label>
-            <input id="email" @bind="Usuario.Email" class="form-control" />
+            <InputText id="email" @bind-Value="Usuario.Email" class="form-control" />
+            <ValidationMessage For="()=>Usuario.Email" />
         </div>
         <div class="col-12">
             <label for="senha">Senha</label>
-            <input id="senha" @bind="Usuario.Senha" class="form-control" />
+            <InputText type="password" id="senha" @bind-Value="Usuario.Senha" class="form-control" />
+            <ValidationMessage For="@(()=>Usuario.Senha)" />
         </div>
         <div class="col-12 mt-3">
             <button type="submit" class="btn btn-outline-primary">Acessar</button>
