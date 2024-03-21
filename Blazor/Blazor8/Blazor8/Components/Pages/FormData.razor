@@ -2,38 +2,41 @@
 @rendermode InteractiveServer
 <h3>Formulário</h3>
 
-@if (Mensagem is not null){
+@if (Mensagem is not null)
+{
     <div class="alert alert-info">
         @Mensagem
     </div>
 }
-<div class="row">
-    <div class="col-12">
-        <label for="email">E-mail</label>
-        <input id="email" @bind="Email" class="form-control" />
+<EditForm Model="Usuario" OnSubmit="Acessar" FormName="login">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="row">
+        <div class="col-12">
+            <label for="email">E-mail</label>
+            <input id="email" @bind="Usuario.Email" class="form-control" />
+        </div>
+        <div class="col-12">
+            <label for="senha">Senha</label>
+            <input id="senha" @bind="Usuario.Senha" class="form-control" />
+        </div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-outline-primary">Acessar</button>
+        </div>
     </div>
-    <div class="col-12">
-        <label for="senha">Senha</label>
-        <input id="senha" @bind="Senha" class="form-control" />
-    </div>
-    <div class="col-12 mt-3">
-        <button @onclick="Acessar" class="btn btn-outline-primary">Acessar</button>
-    </div>
-</div>
-
-
-
-
+</EditForm>
 
 @code {
     public string? Mensagem { get; set; }
-    private string? Email { get; set; }
-    private string? Senha { get; set; }
-    public void Acessar()
+    private Usuario Usuario { get; set; } = new Usuario();
+
+    public void Acessar(EditContext context)
     {
         //TODO - Validar
-
-        //TODO - Consultar DB | Consultar API 
-        Mensagem = $"Email: {Email} - Senha: {Senha}";
+        if (context.Validate())
+        {
+            //TODO - Consultar DB | Consultar API
+            Mensagem = $"Acessando.....Email: {Usuario.Email} - Senha: {Usuario.Senha}";
+        }
     }
 }
