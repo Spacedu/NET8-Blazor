@@ -27,5 +27,8 @@ namespace Gestao.Models.Contas
 
         public int? EmpresaId { get; set; }
         public Empresa? Empresa { get; set; }
+
+        public int? GrupoContaRecorrenteId { get; set; }
+        public GrupoContaRecorrente? GrupoContaRecorrente { get; set; }
     }
 }
