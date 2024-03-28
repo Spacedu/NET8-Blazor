@@ -11,5 +11,8 @@
         public string Bairro { get; set; } = null!;
         public string Endereco { get; set; } = null!;
         public string Complemento { get; set; } = null!;
+
+        public string? UsuarioId { get; set; }
+        public Usuario? Usuario { get; set; }
     }
 }
