@@ -1,4 +1,5 @@
 ﻿@page "/Account/RegisterConfirmation"
+@layout Gestao.Components.Layout.Default.DefaultLayout
 
 @using System.Text
 @using Microsoft.AspNetCore.Identity
@@ -10,23 +11,34 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Register confirmation</PageTitle>
+<PageTitle>Confirmação de cadastro</PageTitle>
 
-<h1>Register confirmation</h1>
+<div class="p-lg-5 p-4">
+    <h5 class="text-primary">Confirmação de cadastro</h5>
+    <StatusMessage Message="@statusMessage" />
+    <div class="mt-2 text-center">
+        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c" class="avatar-xl">
+        </lord-icon>
+    </div>
+    <div class="p-2">
+        @if (emailConfirmationLink is not null)
+        {
+            <p>
+                Este aplicativo não esta com o sistema de envio de e-mail configurado, veja <a href="https://aka.ms/aspaccountconf">a documentação</a> para saber como configurar o envio de e-mail.
+                
+                Confirmação manual: <a href="@emailConfirmationLink">Clique aqui para confirmar seu cadastro</a>
+            </p>
+        }
+        else
+        {
+            <p>Verifique sua caixa de e-mail para confirmar o cadastro.</p>
+        }
+    </div>
 
-<StatusMessage Message="@statusMessage" />
-
-@if (emailConfirmationLink is not null)
-{
-    <p>
-        This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-        Normally this would be emailed: <a href="@emailConfirmationLink">Click here to confirm your account</a>
-    </p>
-}
-else
-{
-    <p>Please check your email to confirm your account.</p>
-}
+    <div class="mt-5 text-center">
+        <p class="mb-0"><a href="/Account/Login" class="fw-semibold text-primary text-decoration-underline"> Voltar </a> </p>
+    </div>
+</div>
 
 @code {
     private string? emailConfirmationLink;
