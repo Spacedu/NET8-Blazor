@@ -1,0 +1,68 @@
+[
+	{
+        "id": 1,
+        "coverImg": "assets/images/small/img-2.jpg",
+        "companyLogo": "assets/images/companies/img-3.png",
+        "jobTitle": "UI/UX designer",
+        "companyName": "Nesta Technologies",
+        "description": "A UI/UX designer's job is to create user-friendly interfaces that enable users to understand how to use complex technical products. If you're passionate about the latest technology trends and devices, you'll find great fulfillment in being involved in the design process for the next hot gadget.",
+        "tags": ["Design", "Remote", "UI/UX Designer", "Designer"],
+        "type": "Full Time",
+        "experience": "2 Year",
+        "location": "Escondido, California",
+        "applied": "640 Applied",
+        "postDate": "11 Sep, 2022"
+    },{
+        "id": 2,
+        "coverImg": "assets/images/small/img-4.jpg",
+        "companyLogo": "assets/images/companies/img-4.png",
+        "jobTitle": "Marketing Director",
+        "companyName": "Meta4Systems",
+        "description": "These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents to do what we like best, every pleasure is to be welcomed and every pain avoided. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure.",
+        "tags": ["Design", "Remote", "UI/UX Designer", "Designer"],
+        "type": "Intership",
+        "experience": "Fresher",
+        "location": "Vinninga, Sweden",
+        "applied": "134 Applied",
+        "postDate": "13 Sep, 2022"
+    },{
+        "id": 3,
+        "coverImg": "assets/images/small/img-7.jpg",
+        "companyLogo": "assets/images/companies/img-5.png",
+        "jobTitle": "Product Sales Specialist",
+        "companyName": "Digitech Galaxy",
+        "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.",
+        "tags": ["Design", "Remote", "UI/UX Designer", "Designer"],
+        "type": "Part Time",
+        "experience": "0 - 5 Year",
+        "location": "Cullera, Spain",
+        "applied": "79 Applied",
+        "postDate": "14 Sep, 2022"
+    },{
+        "id": 4,
+        "coverImg": "assets/images/small/img-3.jpg",
+        "companyLogo": "assets/images/companies/img-6.png",
+        "jobTitle": "Project Manager",
+        "companyName": "Syntyce Solutions",
+        "description": "In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated.",
+        "tags": ["Design", "Remote", "UI/UX Designer", "Designer"],
+        "type": "Freelance",
+        "experience": "1 Year",
+        "location": "Stordorf, Germany",
+        "applied": "36 Applied",
+        "postDate": "14 Sep, 2022"
+    },{
+        "id": 5,
+        "coverImg": "assets/images/small/img-8.jpg",
+        "companyLogo": "assets/images/companies/img-7.png",
+        "jobTitle": "Product Designer",
+        "companyName": "Themesbrand",
+        "description": "A UI/UX designer's job is to create user-friendly interfaces that enable users to understand how to use complex technical products. If you're passionate about the latest technology trends and devices, you'll find great fulfillment in being involved in the design process for the next hot gadget.",
+        "tags": ["Design", "Remote", "UI/UX Designer", "Designer"],
+        "type": "Full Time",
+        "experience": "1 - 2 Year",
+        "location": "United Kingdom",
+        "applied": "74 Applied",
+        "postDate": "15 Sep, 2022"
+    }
+]

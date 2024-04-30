@@ -1,0 +1,122 @@
+[
+	{
+		"id": "1",
+		"name": ["assets/images/users/avatar-9.jpg", "Thomas Taylor"],
+		"company_name": "iTest Factory",
+		"desc": "Hello, I'm Thomas Taylor, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "UI / UX Designer",
+		"date": "2012-04-23T18:25:43.511Z",
+		"email_id": "thomastaylor@velzon.com",
+		"phone": "580-464-4694",
+		"lead_score": "236",
+		"tags": ["Partner"]
+	},
+	{
+		"id": "2",
+		"name": ["assets/images/users/avatar-2.jpg", "Nancy Martino"],
+		"company_name": "Force Medicines",
+		"desc": "Hello, I'm Nancy Martino, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "PHP Developer",
+		"date": "2019-03-20T18:25:43.511Z",
+		"email_id": "786-253-9927",
+		"phone": "786-253-9927",
+		"lead_score": "197",
+		"tags": ["Long-term", "Lead"]
+	},
+	{
+		"id": "3",
+		"name": ["assets/images/users/avatar-4.jpg", "Alexis Clarke"],
+		"company_name": "Android Galaxy",
+		"desc": "Hello, I'm Alexis Clarke, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Asp.Net Developer",
+		"date": "2018-10-11T19:30:43.511Z",
+		"email_id": "alexisclarke@velzon.com",
+		"phone": "515-395-1069",
+		"lead_score": "369",
+		"tags": ["Lead", "Partner"]
+	},
+	{
+		"id": "4",
+		"name": ["assets/images/users/avatar-3.jpg", "James Price"],
+		"company_name": "Themesbrand",
+		"desc": "Hello, I'm James Price, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Lead Developer",
+		"date": "2018-11-12T12:25:50.511Z",
+		"email_id": "jamesprice@velzon.com",
+		"phone": "646-276-2274",
+		"lead_score": "81",
+		"tags": ["Lead"]
+	},
+	{
+		"id": "5",
+		"name": ["assets/images/users/avatar-5.jpg", "Mary Cousar"],
+		"company_name": "Micro Design",
+		"desc": "Hello, I'm Mary Cousar, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Full Stack Developer",
+		"date": "2015-03-20T18:25:43.511Z",
+		"email_id": "marycousar@velzon.com",
+		"phone": "540-575-0991",
+		"lead_score": "643",
+		"tags": ["Exiting"]
+	},
+	{
+		"id": "6",
+		"name": ["assets/images/users/avatar-6.jpg", "Herbert Stokes"],
+		"company_name": "Themesbrand",
+		"desc": "Hello, I'm Herbert Stokes, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Mean Stack Developer",
+		"date": "2012-05-10T10:25:55.511Z",
+		"email_id": "herbertstokes@velzon.com",
+		"phone": "949-791-0614",
+		"lead_score": "784",
+		"tags": ["Exiting", "Lead", "Partner"]
+	},
+	{
+		"id": "7",
+		"name": ["assets/images/users/avatar-7.jpg", "Michael Morris"],
+		"company_name": "Syntyce Solutions",
+		"desc": "Hello, I'm Michael Morris, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "NodeJS Developer",
+		"date": "2021-08-12T18:25:43.511Z",
+		"email_id": "timothysmith@velzon.com",
+		"phone": "231-480-8536",
+		"lead_score": "732",
+		"tags": ["Lead", "Partner"]
+	},
+	{
+		"id": "8",
+		"name": ["assets/images/users/avatar-9.jpg", "Timothy Smith"],
+		"company_name": "Digitech Galaxy",
+		"desc": "Hello, I'm Timothy Smith, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Assitant Developer",
+		"date": "2017-09-18T18:36:10.511Z",
+		"email_id": "tonyanoble@velzon.com",
+		"phone": "414-453-5725",
+		"lead_score": "154",
+		"tags": ["Partner"]
+	},
+	{
+		"id": "9",
+		"name": ["assets/images/users/avatar-8.jpg", "Kevin Dawson"],
+		"company_name": "Meta4Systems",
+		"desc": "Hello, I'm Kevin Dawson, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Senoir Developer",
+		"date": "2011-06-09T22:30:43.511Z",
+		"email_id": "kevindawson@velzon.com",
+		"phone": "745-321-9874",
+		"lead_score": "500",
+		"tags": ["Lead"]
+	},
+	{
+		"id": "10",
+		"name": ["assets/images/users/avatar-10.jpg", "Tonya Noble"],
+		"company_name": "Nesta Technologies",
+		"desc": "Hello, I'm Tonya Noble, The most effective objective is one that is tailored to the job you are applying for. It states what kind of career you are seeking, and what skills and experiences.",
+		"designation": "Lead Designer / Developer",
+		"date": "2012-04-23T18:25:43.511Z",
+		"email_id": "tonyanoble@velzon.com",
+		"phone": "414-453-5725",
+		"lead_score": "225",
+		"tags": ["Lead", "Partner"]
+	}
+]

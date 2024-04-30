@@ -1,0 +1,99 @@
+[
+    {
+        "id": "002",
+        "company": ["assets/images/brands/slack.png", "Plunkett Infotech"],
+        "designation": "Product Designer",
+        "date": "26 Sep, 2022",
+        "contacts": "734-544-2407",
+        "type": "Full Time",
+        "status": "New"
+    },{
+        "id": "003",
+        "company": ["assets/images/companies/img-4.png", "Martin's"],
+        "designation": "Business Associate",
+        "date": "26 Sep, 2022",
+        "contacts": "303-606-1985",
+        "type": "Part Time",
+        "status": "New"
+    },{
+        "id": "004",
+        "company": ["assets/images/companies/img-3.png", "Meta4Systems"],
+        "designation": "Magento Developer",
+        "date": "27 Sep, 2022",
+        "contacts": "610-440-0592",
+        "type": "Part Time",
+        "status": "Rejected"
+    },{
+        "id": "005",
+        "company": ["assets/images/companies/img-4.png", "Grey Fade"],
+        "designation": "Marketing Director",
+        "date": "28 Sep, 2022",
+        "contacts": "907-452-3702",
+        "type": "Full Time",
+        "status": "Pending"
+    },{
+        "id": "006",
+        "company": ["assets/images/brands/mail_chimp.png", "Syntyce Solutions "],
+        "designation": "Project Manager",
+        "date": "28 Sep, 2022",
+        "contacts": "803-740-3309",
+        "type": "Part Time",
+        "status": "Approved"
+    },{
+        "id": "007",
+        "company": ["assets/images/brands/dropbox.png", "Micro Design"],
+        "designation": "HTML Developer",
+        "date": "29 Sep, 2022",
+        "contacts": "563-940-8926",
+        "type": "Part Time",
+        "status": "New"
+    },{
+        "id": "008",
+        "company": ["assets/images/companies/img-6.png", "Android Galaxy"],
+        "designation": "Product Sales Specialist",
+        "date": "29 Sep, 2022",
+        "contacts": "352-403-5870",
+        "type": "Full Time",
+        "status": "Pending"
+    },{
+        "id": "009",
+        "company": ["assets/images/companies/img-1.png", "Digitech Galaxy"],
+        "designation": "Magento Developer",
+        "date": "29 Sep, 2022",
+        "contacts": "517-745-4446",
+        "type": "Part Time",
+        "status": "New"
+    },{
+        "id": "010",
+        "company": ["assets/images/brands/bitbucket.png", "iTest Factory"],
+        "designation": "Business Associate",
+        "date": "30 Sep, 2022",
+        "contacts": "814-434-0128",
+        "type": "Part Time",
+        "status": "Approved"
+    },{
+        "id": "011",
+        "company": ["assets/images/brands/dribbble.png", "Nesta Technologies"],
+        "designation": "UI/UX Designer",
+        "date": "01 Sep, 2022",
+        "contacts": "304-338-0822",
+        "type": "Part Time",
+        "status": "Pending"
+    },{
+        "id": "012",
+        "company": ["assets/images/companies/img-4.png", "Digitech Galaxy"],
+        "designation": "Product Designer",
+        "date": "02 Sep, 2022",
+        "contacts": "320-336-1796",
+        "type": "Full Time",
+        "status": "New"
+    },{
+        "id": "013",
+        "company": ["assets/images/brands/slack.png", "Syntyce Solutions"],
+        "designation": "Web Designer",
+        "date": "02 Sep, 2022",
+        "contacts": "785-685-4616",
+        "type": "Full Time",
+        "status": "Rejected"
+    }
+]

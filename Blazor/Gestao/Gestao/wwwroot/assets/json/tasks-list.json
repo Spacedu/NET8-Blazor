@@ -1,0 +1,184 @@
+[
+	{
+		"id": "1",
+		"project_name": "Velzon - v1.0.0",
+		"tasks_name": "Profile Page Satructure",
+		"client_name": "Robert McMahon",
+		"assignedto": [{
+				"assigneeName": "Curtis Saenz",
+				"assigneeImg": "assets/images/users/avatar-1.jpg"
+			},{
+				"assigneeName": "John Robles",
+				"assigneeImg": "assets/images/users/avatar-3.jpg"
+			}
+		],
+		"due_date": "25 Jan, 2022",
+		"status": "Inprogress",
+		"priority": "High"
+	},
+	{
+		"id": "2",
+		"project_name": "Skote - v1.0.0",
+		"tasks_name": "Apologize for shopping Error!",
+		"client_name": "Nathan Cole",
+		"assignedto": [{
+				"assigneeName": "Virgie Price",
+				"assigneeImg": "assets/images/users/avatar-5.jpg"
+			},{
+				"assigneeName": "Diego Norris",
+				"assigneeImg": "assets/images/users/avatar-9.jpg"
+			},{
+				"assigneeName": "Anthony Mills",
+				"assigneeImg": "assets/images/users/avatar-10.jpg"
+			}
+		],
+		"due_date": "23 Oct, 2021",
+		"status": "Completed",
+		"priority": "Medium"
+	},
+	{
+		"id": "3",
+		"project_name": "Minia - v1.0.0",
+		"tasks_name": "Post launch reminder/ Post list",
+		"client_name": "Joseph Parker",
+		"assignedto": [{
+				"assigneeName": "Virgie Price",
+				"assigneeImg": "assets/images/users/avatar-5.jpg"
+			},{
+				"assigneeName": "Marian Angel",
+				"assigneeImg": "assets/images/users/avatar-6.jpg"
+			},{
+				"assigneeName": "Johnnie Walton",
+				"assigneeImg": "assets/images/users/avatar-7.jpg"
+			},{
+				"assigneeName": "Donna Weston",
+				"assigneeImg": "assets/images/users/avatar-8.jpg"
+			}
+		],
+		"due_date": "05 Oct, 2021",
+		"status": "Pending",
+		"priority": "Low"
+	},
+	{
+		"id": "4",
+		"project_name": "Dason - v1.0.0",
+		"tasks_name": "User research",
+		"client_name": "Donald Palmer",
+		"assignedto": [{
+				"assigneeName": "James Forbes",
+				"assigneeImg": "assets/images/users/avatar-2.jpg"
+			}
+		],
+		"due_date": "11 Dec, 2021",
+		"status": "New",
+		"priority": "Low"
+	},
+	{
+		"id": "5",
+		"project_name": "Minible - v1.0.0",
+		"tasks_name": "Make a creating an account profile",
+		"client_name": "Henry Baird",
+		"assignedto": [{
+				"assigneeName": "John Robles",
+				"assigneeImg": "assets/images/users/avatar-3.jpg"
+			},{
+				"assigneeName": "Anthony Mills",
+				"assigneeImg": "assets/images/users/avatar-10.jpg"
+			},{
+				"assigneeName": "Diego Norris",
+				"assigneeImg": "assets/images/users/avatar-9.jpg"
+			}
+		],
+		"due_date": "11 Jan, 2019",
+		"status": "Inprogress",
+		"priority": "Medium"
+	},
+	{
+		"id": "6",
+		"project_name": "Minimal - v2.1.0",
+		"tasks_name": "Change email option process",
+		"client_name": "Tonya Noble",
+		"assignedto": [{
+				"assigneeName": "Marian Angel",
+				"assigneeImg": "assets/images/users/avatar-6.jpg"
+			},{
+				"assigneeName": "Johnnie Walton",
+				"assigneeImg": "assets/images/users/avatar-7.jpg"
+			}
+		],
+		"due_date": "03 Mar, 2020",
+		"status": "Completed",
+		"priority": "High"
+	},
+	{
+		"id": "7",
+		"project_name": "Dorsin - Landing Page",
+		"tasks_name": "Benner design for FB & Twitter",
+		"client_name": "Carter",
+			"assignedto": [{
+				"assigneeName": "John Robles",
+				"assigneeImg": "assets/images/users/avatar-3.jpg"
+			},{
+				"assigneeName": "Mary Gant",
+				"assigneeImg": "assets/images/users/avatar-4.jpg"
+			},{
+				"assigneeName": "Virgie Price",
+				"assigneeImg": "assets/images/users/avatar-5.jpg"
+			}
+		],
+		"due_date": "26 Feb, 2019",
+		"status": "Pending",
+		"priority": "Medium"
+	},
+	{
+		"id": "8",
+		"project_name": "Qexal - Landing Page",
+		"tasks_name": "Brand Logo design",
+		"client_name": "David Nichols",
+		"assignedto": [{
+				"assigneeName": "Marian Angel",
+				"assigneeImg": "assets/images/users/avatar-6.jpg"
+			},{
+				"assigneeName": "Johnnie Walton",
+				"assigneeImg": "assets/images/users/avatar-7.jpg"
+			},{
+				"assigneeName": "Donna Weston",
+				"assigneeImg": "assets/images/users/avatar-8.jpg"
+			}
+		],
+		"due_date": "29 Dec, 2021",
+		"status": "Pending",
+		"priority": "High"
+	},
+	{
+		"id": "9",
+		"project_name": "Doot - Chat App Template",
+		"tasks_name": "Additional Calendar",
+		"client_name": "Diana Kohler",
+		"assignedto": [{
+				"assigneeName": "Mary Gant",
+				"assigneeImg": "assets/images/users/avatar-4.jpg"
+			},{
+				"assigneeName": "Virgie Price",
+				"assigneeImg": "assets/images/users/avatar-5.jpg"
+			}
+		],
+		"due_date": "13 Jun, 2020",
+		"status": "New",
+		"priority": "Low"
+	},
+	{
+		"id": "10",
+		"project_name": "Symox v1.0.0",
+		"tasks_name": "Add Dynamic Contact List",
+		"client_name": "RH Nichols",
+		"assignedto": [{
+				"assigneeName": "John Robles",
+				"assigneeImg": "assets/images/users/avatar-3.jpg"
+			}
+		],
+		"due_date": "15 Dec, 2020",
+		"status": "Inprogress",
+		"priority": "Medium"
+	}
+]

@@ -1,0 +1,123 @@
+[
+	{
+        "id": 1,
+        "companyLogo": "assets/images/companies/img-1.png",
+        "jobTitle": "Education Training",
+        "companyName": "Micro Design",
+        "location": "Escondido,California",
+        "postDate": "15 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time", "Freelance", "Urgent"],
+        "status": "Active"
+    },{
+        "id": 2,
+        "companyLogo": "assets/images/companies/img-2.png",
+        "jobTitle": "Magento Developer",
+        "companyName": "Themesbrand",
+        "location": "Stordorf, Germany",
+        "postDate": "15 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Part Time", "Freelance"],
+        "status": "New"
+    },{
+        "id": 3,
+        "companyLogo": "assets/images/companies/img-3.png",
+        "jobTitle": "Product Designer",
+        "companyName": "Themesbrand",
+        "location": "Cullera, Spain",
+        "postDate": "14 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time", "Private"],
+        "status": "Active"
+    },{
+        "id": 4,
+        "companyLogo": "assets/images/companies/img-5.png",
+        "jobTitle": "React Developer",
+        "companyName": "iTest Factory",
+        "location": "Haren, Germany",
+        "postDate": "13 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time", "Freelance", "Urgent"],
+        "status": "New"
+    },{
+        "id": 5,
+        "companyLogo": "assets/images/companies/img-6.png",
+        "jobTitle": "UI/UX Designer",
+        "companyName": "Creative Team",
+        "location": "Vinninga, Sweden",
+        "postDate": "13 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Part Time"],
+        "status": "Active"
+    },{
+        "id": 6,
+        "companyLogo": "assets/images/companies/img-7.png",
+        "jobTitle": "Marketing Director",
+        "companyName": "Themesbrand",
+        "location": "Zhoukou, China",
+        "postDate": "12 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Freelance", "Urgent"],
+        "status": "Close"
+    },{
+        "id": 7,
+        "companyLogo": "assets/images/companies/img-8.png",
+        "jobTitle": "Full Stack Engineer",
+        "companyName": "Syntyce Solutions",
+        "location": "Boroaia, Romania",
+        "postDate": "11 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time"],
+        "status": "Active"
+    },{
+        "id": 8,
+        "companyLogo": "assets/images/companies/img-1.png",
+        "jobTitle": "Project Manager",
+        "companyName": "Themesbrand",
+        "location": "Pazmand, Hungary",
+        "postDate": "11 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time", "Freelance"],
+        "status": "New"
+    },{
+        "id": 9,
+        "companyLogo": "assets/images/companies/img-2.png",
+        "jobTitle": "HTML Developer",
+        "companyName": "Themesbrand",
+        "location": "Donsieders, Germany",
+        "postDate": "10 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Part Time", "Freelance"],
+        "status": "Active"
+    },{
+        "id": 10,
+        "companyLogo": "assets/images/companies/img-3.png",
+        "jobTitle": "Business Associate",
+        "companyName": "Themesbrand",
+        "location": "Sermerieu, France",
+        "postDate": "09 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time", "Freelance", "Urgent"],
+        "status": "Active"
+    },{
+        "id": 11,
+        "companyLogo": "assets/images/companies/img-5.png",
+        "jobTitle": "Assistant / Store Keeper",
+        "companyName": "Force Medicines",
+        "location": "San Lorenzo, Philippines",
+        "postDate": "08 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Part Time"],
+        "status": "Active"
+    },{
+        "id": 12,
+        "companyLogo": "assets/images/companies/img-6.png",
+        "jobTitle": "Product Sales Specialist",
+        "companyName": "Themesbrand",
+        "location": "Pazmand, Hungary",
+        "postDate": "08 Sep, 2022",
+        "description": "As a Product Designer, you will work within a Product Delivery Team fused with UX, engineering, product and data talent.",
+        "requirement": ["Full Time", "Private"],
+        "status": "New"
+    }
+]

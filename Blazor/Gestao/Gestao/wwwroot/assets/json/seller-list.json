@@ -1,0 +1,123 @@
+[
+    {
+        "id": 1,
+        "shop": [{
+            "img": "assets/images/companies/img-8.png",
+            "img_alt": "img-8.png",
+            "name": "Zoetic Fashion"
+        }],
+        "seller": "James Bowen",
+        "email": "jamesbowen@dayrep.com",
+        "phone": "+(253) 12345 67890",
+        "stock": "784",
+        "wallet_balance": "$97,642",
+        "chartColor": ["--vz-warning"],
+        "trending": false,
+        "category": "Retailer"
+    },{
+        "id": 2,
+        "shop": [{
+            "img": "assets/images/companies/img-7.png",
+            "img_alt": "img-7.png",
+            "name": "Syntyce Solutions"
+        }],
+        "seller": "Demi Allen",
+        "email": "demiallen@rhyta.com",
+        "phone": "+(152) 32165 49873",
+        "stock": "945",
+        "wallet_balance": "$17,200",
+        "chartColor": ["--vz-danger"],
+        "trending": true,
+        "category": "Health & Medicine"
+    },{
+        "id": 3,
+        "shop": [{
+            "img": "assets/images/companies/img-6.png",
+            "img_alt": "img-6.png",
+            "name": "Digitech Galaxy"
+        }],
+        "seller": "John Roberts",
+        "email": "johnroberts@dayrep.com",
+        "phone": "+(231) 14562 32165",
+        "stock": "412",
+        "wallet_balance": "$34,241",
+        "chartColor": ["--vz-success"],
+        "trending": true,
+        "category": "Manufacturer"
+    },{
+        "id": 4,
+        "shop": [{
+            "img": "assets/images/companies/img-5.png",
+            "img_alt": "img-5.png",
+            "name": "Meta4Systems"
+        }],
+        "seller": "Zoe Dennis",
+        "email": "zoedennis@jourrapide.com",
+        "phone": "+(44) 98765 32104",
+        "stock": "363",
+        "wallet_balance": "$73,426",
+        "chartColor": ["--vz-warning"],
+        "trending": false,
+        "category": "Retailer"
+    },{
+        "id": 5,
+        "shop": [{
+            "img": "assets/images/companies/img-4.png",
+            "img_alt": "img-4.png",
+            "name": "iTest Factory"
+        }],
+        "seller": "Oliver Tyler",
+        "email": "olivertyler@dayrep.com",
+        "phone": "+(251) 25874 13690",
+        "stock": "159",
+        "wallet_balance": "$14,933",
+        "chartColor": ["--vz-danger"],
+        "trending": true,
+        "category": "Food Service"
+    },{
+        "id": 6,
+        "shop": [{
+            "img": "assets/images/companies/img-3.png",
+            "img_alt": "img-3.png",
+            "name": "Nesta Technologies"
+        }],
+        "seller": "Harley Fuller",
+        "email": "harleyfuller@jourrapide.com",
+        "phone": "+(92) 67890 12345",
+        "stock": "320",
+        "wallet_balance": "$27,102",
+        "chartColor": ["--vz-success"],
+        "trending": false,
+        "category": "Computers & Electronics"
+    },{
+        "id": 7,
+        "shop": [{
+            "img": "assets/images/companies/img-2.png",
+            "img_alt": "img-2.png",
+            "name": "Micro Design"
+        }],
+        "seller": "Katia Stapleton",
+        "email": "katiastapleton@armyspy.com",
+        "phone": "+(62) 35791 15935",
+        "stock": "784",
+        "wallet_balance": "$97,642",
+        "chartColor": ["--vz-success"],
+        "trending": false,
+        "category": "Computers & Electronics"
+    },{
+        "id": 8,
+        "shop": [{
+            "img": "assets/images/companies/img-1.png",
+            "img_alt": "img-1.png",
+            "name": "Force Medicines"
+        }],
+        "seller": "David Marshall",
+        "email": "davidmarshall@dayrep.com",
+        "phone": "+(120) 15935 32165",
+        "stock": "452",
+        "wallet_balance": "$45,415",
+        "chartColor": ["--vz-danger"],
+        "trending": true,
+        "category": "Health & Medicine"
+    }
+]

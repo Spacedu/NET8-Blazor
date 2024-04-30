@@ -1,0 +1,225 @@
+[
+	{
+        "id": 1,
+        "userImg": "assets/images/users/avatar-10.jpg",
+        "candidateName": "Tonya Noble",
+        "designation": "Web Designer",
+        "location": "Cullera, Spain",
+        "type": "Part Time",
+        "rating": ["4.2", "2.2k Ratings"],
+        "bookmark": true
+    },{
+        "id": 2,
+        "userImg": "assets/images/users/avatar-1.jpg",
+        "candidateName": "Nicholas Ball",
+        "designation": "Assistant / Store Keeper",
+        "location": "San Lorenzo",
+        "type": "Full Time",
+        "rating": ["4.1", "1.72k Ratings"],
+        "bookmark": true
+    },{
+        "id": 3,
+        "userImg": "",
+        "nickname": "ZM",
+        "candidateName": "Zynthia Marrow",
+        "designation": "Assistant / Store Keeper",
+        "location": "Cullera, Spain",
+        "type": "Freelancer",
+        "rating": ["4.0", "42.5k Ratings"],
+        "bookmark": false
+    },{
+        "id": 4,
+        "userImg": "assets/images/users/avatar-2.jpg",
+        "candidateName": "Philippa Santiago",
+        "designation": "Project Manager ",
+        "location": "Ugashik, US",
+        "type": "Part Time",
+        "rating": ["4.3", "15k Ratings"],
+        "bookmark": true
+    },{
+        "id": 5,
+        "userImg": "assets/images/users/avatar-4.jpg",
+        "candidateName": "Elizabeth Allen",
+        "designation": "Education Training ",
+        "location": "Zuweihir, UAE",
+        "type": "Freelancer",
+        "rating": ["3.5", "7.3k Ratings"],
+        "bookmark": false
+    },{
+        "id": 6,
+        "userImg": "assets/images/users/avatar-5.jpg",
+        "candidateName": "Cassian Jenning",
+        "designation": "Graphic Designer ",
+        "location": "Limestone, US",
+        "type": "Part Time",
+        "rating": ["4.3", "13.2k Ratings"],
+        "bookmark": false
+    },{
+        "id": 7,
+        "userImg": "assets/images/users/avatar-6.jpg",
+        "candidateName": "Scott Holt",
+        "designation": "UI/UX Designer ",
+        "location": "Germany",
+        "type": "Part Time",
+        "rating": ["3.5", "7.3k Ratings"],
+        "bookmark": false
+    },{
+        "id": 8,
+        "userImg": "",
+        "nickname": "PS",
+        "candidateName": "Philbert Schwartz",
+        "designation": "React Developer ",
+        "location": "Zuweihir, UAE",
+        "type": "Full Time",
+        "rating": ["4.1", "1.74k Ratings"],
+        "bookmark": true
+    },{
+        "id": 9,
+        "userImg": "",
+        "nickname": "LV",
+        "candidateName": "Larry Villa",
+        "designation": "Assistant / Store Keeper",
+        "location": "San Lorenzo",
+        "type": "Full Time",
+        "rating": ["4.0", "1.72k Ratings"],
+        "bookmark": false
+    },{
+        "id": 10,
+        "userImg": "assets/images/users/avatar-10.jpg",
+        "candidateName": "Harley Watkins",
+        "designation": "Project Manager ",
+        "location": "Texanna, US",
+        "type": "Full Time",
+        "rating": ["4.2", "3.21k Ratings"],
+        "bookmark": false
+    },{
+        "id": 11,
+        "userImg": "assets/images/users/avatar-2.jpg",
+        "candidateName": "Marie Stewart",
+        "designation": "Web Designer",
+        "location": "Cullera, Spain",
+        "type": "Part Time",
+        "rating": ["4.2", "2.2k Ratings"],
+        "bookmark": true
+    },{
+        "id": 12,
+        "userImg": "assets/images/users/avatar-9.jpg",
+        "candidateName": "Hadley Leonard",
+        "designation": "Executive, HR Operations ",
+        "location": "Zuweihir, UAE",
+        "type": "Full Time",
+        "rating": ["4.0", "3.2k Ratings"],
+        "bookmark": false
+    },{
+        "id": 13,
+        "userImg": "assets/images/users/avatar-6.jpg",
+        "candidateName": "Zoderick Rodriquez",
+        "designation": "Full Stack Developer",
+        "location": "Muhtarqah, UAE",
+        "type": "Freelancer",
+        "rating": ["3.9", "98.65k Ratings"],
+        "bookmark": false
+    },{
+        "id": 14,
+        "userImg": "assets/images/users/avatar-7.jpg",
+        "candidateName": "Nadia Harding",
+        "designation": "Web Designer",
+        "location": "Pahoa, US",
+        "type": "Freelancer",
+        "rating": ["4.3", "2.93k Ratings"],
+        "bookmark": true
+    },{
+        "id": 15,
+        "userImg": "assets/images/users/avatar-4.jpg",
+        "candidateName": "Addison Black",
+        "designation": "UI/UX Designer",
+        "location": "Phoenix, Arizona",
+        "type": "Part Time",
+        "rating": ["3.8", "10.32k Ratings"],
+        "bookmark": false
+    },{
+        "id": 16,
+        "userImg": "",
+        "nickname": "PW",
+        "candidateName": "Priscilla Wise",
+        "designation": "Executive, HR Operations",
+        "location": "Ghurayfah, UAE",
+        "type": "Full Time",
+        "rating": ["4.0", "7.63k Ratings"],
+        "bookmark": false
+    },{
+        "id": 17,
+        "userImg": "assets/images/users/avatar-8.jpg",
+        "candidateName": "Lizzie Chandler",
+        "designation": "React Developer",
+        "location": "Maidaq, UAE",
+        "type": "Part Time",
+        "rating": ["3.9", "1.35k Ratings"],
+        "bookmark": false
+    },{
+        "id": 18,
+        "nickname": "JC",
+        "candidateName": "Jenson Carlson",
+        "designation": "Graphic Designer",
+        "location": "Quesada, US",
+        "type": "Freelancer",
+        "rating": ["4.2", "3.16k Ratings"],
+        "bookmark": false
+    },{
+        "id": 19,
+        "userImg": "assets/images/users/avatar-1.jpg",
+        "candidateName": "Jaylee Ward",
+        "designation": "Education Training",
+        "location": "Cullera, Spain",
+        "type": "Full Time",
+        "rating": ["4.0", "3.21k Ratings"],
+        "bookmark": true
+    },{
+        "id": 20,
+        "userImg": "assets/images/users/avatar-2.jpg",
+        "candidateName": "Trista Guerrero",
+        "designation": "Product Director",
+        "location": "Jereirah, UAE",
+        "type": "Full Time",
+        "rating": ["4.1", "4.31k Ratings"],
+        "bookmark": false
+    },{
+        "id": 21,
+        "userImg": "",
+        "nickname": "JS",
+        "candidateName": "James Stone",
+        "designation": "Graphic Designer",
+        "location": "Quesada, US",
+        "type": "Freelancer",
+        "rating": ["4.2", "3.16k Ratings"],
+        "bookmark": false
+    },{
+        "id": 22,
+        "userImg": "",
+        "nickname": "MW",
+        "candidateName": "Mike Watson",
+        "designation": "Product Director",
+        "location": "Jereirah, UAE",
+        "type": "Full Time",
+        "rating": ["4.1", "4.31k Ratings"],
+        "bookmark": false
+    },{
+        "id": 23,
+        "userImg": "assets/images/users/avatar-4.jpg",
+        "candidateName": "Mary Sak",
+        "designation": "Education Training",
+        "location": "Cullera, Spain",
+        "type": "Full Time",
+        "rating": ["4.0", "3.21k Ratings"],
+        "bookmark": true
+    },{
+        "id": 24,
+        "userImg": "assets/images/users/avatar-8.jpg",
+        "candidateName": "Roderick Jones",
+        "designation": "React Developer",
+        "location": "Maidaq, UAE",
+        "type": "Part Time",
+        "rating": ["3.9", "1.35k Ratings"],
+        "bookmark": false
+    }
+]
