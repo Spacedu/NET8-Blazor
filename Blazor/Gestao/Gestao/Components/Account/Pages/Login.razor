@@ -28,7 +28,7 @@
             <ValidationSummary class="text-danger" role="alert" />
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
-                <InputText @bind-Value="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="Digite seu e-mail" />
+                <InputText @bind-Value="Input.Email" id="email" class="form-control" autocomplete="username" aria-required="true" placeholder="Digite seu e-mail" />
                 <ValidationMessage For="() => Input.Email" class="text-danger" />
             </div>
 
@@ -38,7 +38,7 @@
                 </div>
                 <label class="form-label" for="password">Senha</label>
                 <div class="position-relative auth-pass-inputgroup mb-3">
-                    <InputText type="password" @bind-Value="Input.Password" class="form-control pe-5 password-input" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" />
+                    <InputText type="password" id="password" @bind-Value="Input.Password" class="form-control pe-5 password-input" autocomplete="current-password" aria-required="true" placeholder="Digite sua senha" />
                     <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon material-shadow-none" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                 </div>
                 <ValidationMessage For="() => Input.Password" class="text-danger" />
