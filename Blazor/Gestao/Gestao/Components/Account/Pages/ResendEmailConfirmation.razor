@@ -13,24 +13,41 @@
 @inject NavigationManager NavigationManager
 @inject IdentityRedirectManager RedirectManager
 
-<PageTitle>Resend email confirmation</PageTitle>
+<PageTitle>Reenvie o e-mail de confirmação</PageTitle>
 
-<h1>Resend email confirmation</h1>
-<h2>Enter your email.</h2>
-<hr />
-<StatusMessage Message="@message" />
-<div class="row">
-    <div class="col-md-4">
+
+
+
+
+<div class="p-lg-5 p-4">
+    <h5 class="text-primary">Reenvie o e-mail de confirmação</h5>
+    <StatusMessage Message="@message" />
+    <div class="mt-2 text-center">
+        <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop" colors="primary:#0ab39c" class="avatar-xl">
+        </lord-icon>
+    </div>
+
+    <div class="alert border-0 alert-warning text-center mb-2 mx-2" role="alert">
+        Digite seu e-mail e instruções serão enviadas para você!
+    </div>
+    <div class="p-2">
         <EditForm Model="Input" FormName="resend-email-confirmation" OnValidSubmit="OnValidSubmitAsync" method="post">
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
-            <div class="form-floating mb-3">
-                <InputText @bind-Value="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
-                <label for="email" class="form-label">Email</label>
-                <ValidationMessage For="() => Input.Email" class="text-danger" />
+            <div class="mb-4">
+                <label for="email" class="form-label">E-mail</label>
+                <InputText @bind-Value="Input.Email" id="email" class="form-control" autocomplete="username" aria-required="true" placeholder="Digite seu e-mail" />
+                <ValidationMessage For="() => Input.Email" class="invalid-feedback" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-success w-100" type="submit">Enviar</button>
+            </div>
         </EditForm>
+    </div>
+
+    <div class="mt-5 text-center">
+        <p class="mb-0"><a href="/Account/Login" class="fw-semibold text-primary text-decoration-underline"> Voltar </a> </p>
     </div>
 </div>
 
