@@ -15,10 +15,6 @@
 
 <PageTitle>Reenvie o e-mail de confirmação</PageTitle>
 
-
-
-
-
 <div class="p-lg-5 p-4">
     <h5 class="text-primary">Reenvie o e-mail de confirmação</h5>
     <StatusMessage Message="@message" />
@@ -62,7 +58,7 @@
         var user = await UserManager.FindByEmailAsync(Input.Email!);
         if (user is null)
         {
-            message = "Verification email sent. Please check your email.";
+            message = "E-mail de verificação enviado. Verifique sua caixa de entrada.";
             return;
         }
 
@@ -74,7 +70,7 @@
             new Dictionary<string, object?> { ["userId"] = userId, ["code"] = code });
         await EmailSender.SendConfirmationLinkAsync(user, Input.Email, HtmlEncoder.Default.Encode(callbackUrl));
 
-        message = "Verification email sent. Please check your email.";
+        message = "E-mail de verificação enviado. Verifique sua caixa de entrada.";
     }
 
     private sealed class InputModel

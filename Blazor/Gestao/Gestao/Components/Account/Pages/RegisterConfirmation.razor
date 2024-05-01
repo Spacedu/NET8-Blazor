@@ -64,7 +64,7 @@
         if (user is null)
         {
             HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            statusMessage = "Error finding user for unspecified email";
+            statusMessage = $"Erro ao tentar buscar o usuário com o e-mail especificado: {Email}.";
         }
         else if (EmailSender is IdentityNoOpEmailSender)
         {
