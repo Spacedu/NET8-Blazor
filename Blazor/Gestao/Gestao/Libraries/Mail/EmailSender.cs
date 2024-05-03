@@ -1,13 +1,15 @@
 ﻿using Gestao.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using System.Net.Mail;
 
 namespace Gestao.Libraries.Mail
 {
-    public class EmailSender(ILogger<EmailSender> logger) : IEmailSender<ApplicationUser>
+    public class EmailSender(ILogger<EmailSender> logger, IConfiguration configuration, SmtpClient smtp) : IEmailSender<ApplicationUser>
     {
         private readonly ILogger logger = logger;
-
+        private readonly SmtpClient smtp = smtp;
+        private readonly IConfiguration configuration = configuration;
 
         public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
             string confirmationLink) => SendEmailAsync(email, "Confirme seu e-mail",
@@ -27,16 +29,17 @@ namespace Gestao.Libraries.Mail
             await Execute(subject, message, toEmail);
         }
 
-        public async Task Execute(string subject, string message,string toEmail)
+        public async Task Execute(string subject, string message, string toEmail)
         {
-            /*
-             * Substituir o Mandrill pelo SMTP - Gmail
-            var api = new MandrillApi(apiKey);
-            var mandrillMessage = new MandrillMessage("sarah@contoso.com", toEmail,
-                subject, message);
-            await api.Messages.SendAsync(mandrillMessage);
-            */
+            var mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress( configuration.GetValue<string>("EmailSender:User")! );
+            mailMessage.To.Add(new MailAddress(toEmail));
+            mailMessage.Subject = subject;
+            mailMessage.Body = message;
+            mailMessage.IsBodyHtml = true;
 
+            await smtp.SendMailAsync(mailMessage);
+            
             logger.LogInformation("Email to {EmailAddress} sent!", toEmail);
         }
     }

@@ -2,9 +2,13 @@ using Gestao.Client.Pages;
 using Gestao.Components;
 using Gestao.Components.Account;
 using Gestao.Data;
+using Gestao.Libraries.Mail;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net;
+using System.Net.Mail;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +39,21 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
-builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+
+builder.Services.AddSingleton<SmtpClient>( options => {
+    var smtp = new SmtpClient();
+    smtp.Host = builder.Configuration.GetValue<string>("EmailSender:Server")!;
+    smtp.Port = builder.Configuration.GetValue<int>("EmailSender:Port");
+    smtp.EnableSsl = builder.Configuration.GetValue<bool>("EmailSender:SSL");
+
+    smtp.Credentials = new NetworkCredential(
+        builder.Configuration.GetValue<string>("EmailSender:User"),
+        builder.Configuration.GetValue<string>("EmailSender:Password")
+    );
+
+    return smtp;
+});
+builder.Services.AddSingleton<IEmailSender<ApplicationUser>, EmailSender>();
 
 var app = builder.Build();
 
