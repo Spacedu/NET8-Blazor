@@ -11,17 +11,14 @@ namespace Gestao.Libraries.Mail
         private readonly SmtpClient smtp = smtp;
         private readonly IConfiguration configuration = configuration;
 
-        public Task SendConfirmationLinkAsync(ApplicationUser user, string email,
-            string confirmationLink) => SendEmailAsync(email, "Confirme seu e-mail",
+        public Task SendConfirmationLinkAsync(ApplicationUser user, string email, string confirmationLink) => SendEmailAsync(email, "Confirme seu e-mail",
             $"Por favor confirme seu cadastro clicando no link: " +
             $"<a href='{confirmationLink}'>Confirme</a>.");
 
-        public Task SendPasswordResetLinkAsync(ApplicationUser user, string email,
-            string resetLink) => SendEmailAsync(email, "Resetar senha",
+        public Task SendPasswordResetLinkAsync(ApplicationUser user, string email, string resetLink) => SendEmailAsync(email, "Resetar senha",
             $"Clique no link e resete sua senha: <a href='{resetLink}'>Resetar senha</a>.");
 
-        public Task SendPasswordResetCodeAsync(ApplicationUser user, string email,
-            string resetCode) => SendEmailAsync(email, "Resetar senha",
+        public Task SendPasswordResetCodeAsync(ApplicationUser user, string email, string resetCode) => SendEmailAsync(email, "Resetar senha",
             $"Use esse código para resetar sua senha: {resetCode}");
 
         public async Task SendEmailAsync(string toEmail, string subject, string message)
