@@ -37,6 +37,11 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = builder.Configuration.GetValue<String>("OAuth:Facebook:ClientId")!;
         options.ClientSecret = builder.Configuration.GetValue<String>("OAuth:Facebook:ClientSecret")!;
     })
+    .AddMicrosoftAccount(options =>
+    {
+        options.ClientId = builder.Configuration.GetValue<String>("OAuth:Microsoft:ClientId")!;
+        options.ClientSecret = builder.Configuration.GetValue<String>("OAuth:Microsoft:ClientSecret")!;
+    })
     .AddIdentityCookies();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
