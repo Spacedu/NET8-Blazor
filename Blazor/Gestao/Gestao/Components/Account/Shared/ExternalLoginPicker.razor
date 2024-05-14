@@ -23,7 +23,21 @@ else
             <p>
                 @foreach (var provider in externalLogins)
                 {
-                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    if (provider.Name == "Google")
+                    {
+                        <button type="submit" name="provider" value="@provider.Name" class="btn btn-danger btn-icon waves-effect waves-light mx-1" title="Acessar usando a conta @provider.DisplayName"><i class="ri-google-fill fs-16"></i></button>
+                    }else if (provider.Name == "Facebook")
+                    {
+                        <button type="submit" name="provider" value="@provider.Name" class="btn btn-primary btn-icon waves-effect waves-light mx-1" title="Acessar usando a conta @provider.DisplayName"><i class="ri-facebook-fill fs-16"></i></button>
+                    }
+                    else if (provider.Name == "Microsoft")
+                    {
+                        <button type="submit" name="provider" value="@provider.Name" class="btn btn-dark btn-icon waves-effect waves-light mx-1" title="Acessar usando a conta @provider.DisplayName"><i class="ri-microsoft-fill fs-16"></i></button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Acessar usando a conta @provider.DisplayName">@provider.DisplayName</button>
+                    }                    
                 }
             </p>
         </div>
