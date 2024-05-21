@@ -17,6 +17,8 @@
 @inject ILogger<ExternalLogin> Logger
 @layout Gestao.Components.Layout.Default.DefaultLayout
 
+@*
+
 <PageTitle>Register</PageTitle>
 
 
@@ -46,6 +48,8 @@
         </EditForm>
     </div>
 </div>
+
+*@
 
 @code {
     public const string LoginCallbackAction = "LoginCallback";
@@ -97,6 +101,8 @@
             // the login page if we get here some other way.
             RedirectManager.RedirectTo("Account/Login");
         }
+
+        await OnAutomaticLoginAsync();
     }
 
     private async Task OnLoginCallbackAsync()
@@ -128,7 +134,7 @@
         }
     }
 
-    private async Task OnValidSubmitAsync()
+    private async Task OnAutomaticLoginAsync()
     {
         var appUser = await UserManager.FindByEmailAsync(Input.Email);
 
@@ -155,6 +161,7 @@
                 {
                     if (UserManager.Options.SignIn.RequireConfirmedAccount)
                     {
+                        await SendConfirmationEmailAsync(appUser);
                         RedirectManager.RedirectTo("Account/RegisterConfirmation", new() { ["email"] = Input.Email });
                     }
                     else
