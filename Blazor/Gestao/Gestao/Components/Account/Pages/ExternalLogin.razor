@@ -130,6 +130,46 @@
 
     private async Task OnValidSubmitAsync()
     {
+        var appUser = await UserManager.FindByEmailAsync(Input.Email);
+
+        if(appUser is not null)
+        {
+            //TODO - Localizei > Localizar o Login Social > Associa o Login Social ao Usuário.
+            var socialLoginAppUser = await UserManager.FindByLoginAsync(externalLoginInfo.LoginProvider, externalLoginInfo.ProviderKey);
+
+            if(socialLoginAppUser is not null)
+            {
+                //Mandar o Usuário para o Painel de Controle
+                await SignInManager.SignInAsync(socialLoginAppUser, isPersistent: false, externalLoginInfo.LoginProvider);
+                RedirectManager.RedirectTo(ReturnUrl);
+            }
+            else
+            {
+                //Associar a conta Social logada.
+                var result = await UserManager.AddLoginAsync(appUser, externalLoginInfo);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(appUser, isPersistent: false, externalLoginInfo.LoginProvider);
+
+                    if (UserManager.Options.SignIn.RequireConfirmedAccount)
+                    {
+                        RedirectManager.RedirectTo("Account/RegisterConfirmation", new() { ["email"] = Input.Email });
+                    }
+                    else
+                    {
+                        RedirectManager.RedirectTo(ReturnUrl);
+                    }
+                }
+            }
+        }
+        else
+        {
+            await CreateUserInStore();
+        }
+        
+    }
+    private async Task CreateUserInStore()
+    {
         var emailStore = GetEmailStore();
         var user = CreateUser();
 
@@ -139,6 +179,7 @@
         var result = await UserManager.CreateAsync(user);
         if (result.Succeeded)
         {
+            
             result = await UserManager.AddLoginAsync(user, externalLoginInfo);
             if (result.Succeeded)
             {
@@ -166,7 +207,6 @@
 
         message = $"Error: {string.Join(",", result.Errors.Select(error => error.Description))}";
     }
-
     private ApplicationUser CreateUser()
     {
         try
