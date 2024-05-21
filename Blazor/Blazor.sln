@@ -33,9 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Estudo", "Estudo", "{3FEA04
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projeto", "Projeto", "{C9E069B6-4A3D-470E-8811-6A0831FEED29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestao", "Gestao\Gestao\Gestao.csproj", "{B6718B48-64B2-4BEA-B607-7A0E14C8F3E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestao", "Gestao\Gestao\Gestao.csproj", "{B6718B48-64B2-4BEA-B607-7A0E14C8F3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestao.Client", "Gestao\Gestao.Client\Gestao.Client.csproj", "{DA1E5EA6-590E-4044-91C0-1AD4EF9A3414}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestao.Client", "Gestao\Gestao.Client\Gestao.Client.csproj", "{DA1E5EA6-590E-4044-91C0-1AD4EF9A3414}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

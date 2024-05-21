@@ -1,0 +1,118 @@
+﻿@implements IDisposable
+
+@inject NavigationManager NavigationManager
+
+<ul class="navbar-nav" id="navbar-nav">
+    <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+    <li class="nav-item">
+        <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+            <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
+        </a>
+        <div class="collapse menu-dropdown" id="sidebarDashboards">
+            <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                        Home
+                    </NavLink>
+                </li>
+
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="counter">
+                        Counter
+                    </NavLink>
+                </li>
+
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="weather">
+                        Weather
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <NavLink class="nav-link" href="auth">
+                        Auth Required
+                    </NavLink>
+                </li>
+                <li class="nav-item">
+                    <a href="dashboard-job.html" class="nav-link" data-key="t-job">Job</a>
+                </li>
+
+
+                <AuthorizeView>
+                    <Authorized>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="Account/Manage">
+                                <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
+                            </NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <form action="Account/Logout" method="post">
+                                <AntiforgeryToken />
+                                <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                                <button type="submit" class="nav-link">
+                                    <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </Authorized>
+                    <NotAuthorized>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="Account/Register">
+                                <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
+                            </NavLink>
+                        </li>
+                        <li class="nav-item">
+                            <NavLink class="nav-link" href="Account/Login">
+                                <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
+                            </NavLink>
+                        </li>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </ul>
+        </div>
+    </li> <!-- end Dashboard Menu -->
+    <li class="nav-item">
+        <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+            <i class="ri-layout-3-line"></i> <span data-key="t-layouts">Layouts</span> <span class="badge badge-pill bg-danger" data-key="t-hot">Hot</span>
+        </a>
+        <div class="collapse menu-dropdown" id="sidebarLayouts">
+            <ul class="nav nav-sm flex-column">
+                <li class="nav-item">
+                    <a href="layouts-horizontal.html" target="_blank" class="nav-link" data-key="t-horizontal">Horizontal</a>
+                </li>
+                <li class="nav-item">
+                    <a href="layouts-detached.html" target="_blank" class="nav-link" data-key="t-detached">Detached</a>
+                </li>
+                <li class="nav-item">
+                    <a href="layouts-two-column.html" target="_blank" class="nav-link" data-key="t-two-column">Two Column</a>
+                </li>
+                <li class="nav-item">
+                    <a href="layouts-vertical-hovered.html" target="_blank" class="nav-link" data-key="t-hovered">Hovered</a>
+                </li>
+            </ul>
+        </div>
+    </li> <!-- end Dashboard Menu -->
+
+</ul>
+
+
+
+@code {
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
