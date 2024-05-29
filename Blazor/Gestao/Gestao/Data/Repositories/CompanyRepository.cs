@@ -1,4 +1,5 @@
-﻿using Gestao.Domain;
+﻿using Gestao.Client.Libraries.Utilities;
+using Gestao.Domain;
 
 namespace Gestao.Data.Repositories
 {
@@ -13,7 +14,7 @@ namespace Gestao.Data.Repositories
 
         //CRUD
         //TODO - Fazer Paginação
-        public List<Company> GetAll()
+        public PaginatedList<Company> GetAll()
         {
             throw new NotImplementedException();
         }
