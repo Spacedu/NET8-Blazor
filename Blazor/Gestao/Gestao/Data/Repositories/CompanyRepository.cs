@@ -1,5 +1,7 @@
 ﻿using Gestao.Client.Libraries.Utilities;
 using Gestao.Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Gestao.Data.Repositories
 {
@@ -11,12 +13,17 @@ namespace Gestao.Data.Repositories
         {
             _db = db;
         }
-
-        //CRUD
-        //TODO - Fazer Paginação
-        public PaginatedList<Company> GetAll()
+        public async Task<PaginatedList<Company>> GetAll(Guid applicationUserId, int pageIndex, int pageSize)
         {
-            throw new NotImplementedException();
+            var items = await _db.Companies.Where(a => a.UserId == applicationUserId).
+                Skip((pageIndex - 1) * pageSize).
+                Take(pageSize)
+                .ToListAsync();
+
+            var count = await _db.Companies.Where(a => a.UserId == applicationUserId).CountAsync();
+            int totalPages = (int)Math.Ceiling( (decimal) count / pageSize);
+
+            return new PaginatedList<Company>(items, pageIndex, totalPages);
         }
         public Company Get(int id)
         {
