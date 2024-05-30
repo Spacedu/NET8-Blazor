@@ -8,7 +8,7 @@ namespace Gestao.Data.Repositories
         Task Add(Company company);
         Task Delete(int id);
         Task<Company?> Get(int id);
-        Task<PaginatedList<Company>> GetAll(Guid applicationUserId, int pageIndex, int pageSize);
+        Task<PaginatedList<Company>> GetAll(Guid applicationUserId, int pageIndex, int pageSize, string searchWord);
         Task Update(Company company);
     }
 }

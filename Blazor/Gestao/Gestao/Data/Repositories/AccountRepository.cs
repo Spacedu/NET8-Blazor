@@ -12,14 +12,17 @@ namespace Gestao.Data.Repositories
         {
             _db = db;
         }
-        public async Task<PaginatedList<Account>> GetAll(int companyId, int pageIndex, int pageSize)
+        public async Task<PaginatedList<Account>> GetAll(int companyId, int pageIndex, int pageSize, string searchWord = "")
         {
-            var items = await _db.Accounts.Where(a => a.CompanyId == companyId).
-                Skip((pageIndex - 1) * pageSize).
-                Take(pageSize)
+            var items = await _db.Accounts
+                .Where(a => a.CompanyId == companyId)
+                .Where(a=>a.Description.Contains(searchWord))
+                .OrderBy(a=>a.Description)
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            var count = await _db.Accounts.Where(a => a.CompanyId == companyId).CountAsync();
+            var count = await _db.Accounts.Where(a => a.CompanyId == companyId).Where(a => a.Description.Contains(searchWord)).CountAsync();
             int totalPages = (int)Math.Ceiling((decimal)count / pageSize);
 
             return new PaginatedList<Account>(items, pageIndex, totalPages);
