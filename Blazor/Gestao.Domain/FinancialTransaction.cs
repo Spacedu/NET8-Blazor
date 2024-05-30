@@ -20,7 +20,7 @@ namespace Gestao.Domain
         public DateTimeOffset CreatedAt { get; set; }
         
 
-        public ICollection<DocumentAttachment>? DocumentAttachments { get; set; }
+        public ICollection<Document>? Documents { get; set; }
 
         public int? CompanyId { get; set; }
         public Company? Company { get; set; }
