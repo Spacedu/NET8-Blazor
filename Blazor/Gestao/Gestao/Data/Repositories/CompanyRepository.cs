@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Gestao.Data.Repositories
 {
-    public class CompanyRepository
+    public class CompanyRepository : ICompanyRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -21,25 +21,33 @@ namespace Gestao.Data.Repositories
                 .ToListAsync();
 
             var count = await _db.Companies.Where(a => a.UserId == applicationUserId).CountAsync();
-            int totalPages = (int)Math.Ceiling( (decimal) count / pageSize);
+            int totalPages = (int)Math.Ceiling((decimal)count / pageSize);
 
             return new PaginatedList<Company>(items, pageIndex, totalPages);
         }
-        public Company Get(int id)
+        public async Task<Company?> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _db.Companies.SingleOrDefaultAsync(a => a.Id == id);
         }
-        public void Add(Company company)
+        public async Task Add(Company company)
         {
-
+            _db.Companies.Add(company);
+            await _db.SaveChangesAsync();
         }
-        public void Update(Company company)
+        public async Task Update(Company company)
         {
-
+            _db.Companies.Update(company);
+            await _db.SaveChangesAsync();
         }
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            var company = await Get(id);
 
+            if (company is not null)
+            {
+                _db.Companies.Remove(company);
+                await _db.SaveChangesAsync();
+            }
         }
     }
 }
