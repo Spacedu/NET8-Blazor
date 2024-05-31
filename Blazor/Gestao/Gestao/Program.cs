@@ -3,6 +3,7 @@ using Gestao.Components;
 using Gestao.Components.Account;
 using Gestao.Data;
 using Gestao.Data.Repositories;
+using Gestao.Domain.Enums;
 using Gestao.Libraries.Mail;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -144,6 +145,17 @@ app.MapGet("/api/accounts", async(
     [FromQuery] string searchWord
 ) =>{
     var data = repository.GetAll(companyId, pageIndex, pageSize, searchWord);
+    return Results.Ok(data);
+});
+
+app.MapGet("/api/financialtransactions", async(
+    IFinanacialTransactionRepository repository,
+    [FromQuery] TypeFinancialTransaction type,
+    [FromQuery] int companyId,
+    [FromQuery] int pageIndex,
+    [FromQuery] string searchWord
+) =>{
+    var data = await repository.GetAll(companyId, type, pageIndex, pageSize, searchWord);
     return Results.Ok(data);
 });
 
