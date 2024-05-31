@@ -137,5 +137,15 @@ app.MapGet("/api/companies", async (
     return Results.Ok(data);
 });
 
+app.MapGet("/api/accounts", async(
+    IAccountRepository repository,
+    [FromQuery] int companyId,
+    [FromQuery] int pageIndex,
+    [FromQuery] string searchWord
+) =>{
+    var data = repository.GetAll(companyId, pageIndex, pageSize, searchWord);
+    return Results.Ok(data);
+});
+
 #endregion
 app.Run();
