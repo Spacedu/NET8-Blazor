@@ -6,6 +6,7 @@ using Gestao.Data.Repositories;
 using Gestao.Libraries.Mail;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net;
@@ -60,7 +61,8 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 #endregion
 
 #region Dependecy Injection
-builder.Services.AddSingleton<SmtpClient>( options => {
+builder.Services.AddSingleton<SmtpClient>(options =>
+{
     var smtp = new SmtpClient();
     smtp.Host = builder.Configuration.GetValue<string>("EmailSender:Server")!;
     smtp.Port = builder.Configuration.GetValue<int>("EmailSender:Port");
@@ -77,11 +79,10 @@ builder.Services.AddSingleton<IEmailSender<ApplicationUser>, EmailSender>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICompanyRepository, ICompanyRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
 builder.Services.AddScoped<IFinanacialTransactionRepository, FinanacialTransactionRepository>();
 #endregion
-
 
 var app = builder.Build();
 
@@ -112,4 +113,19 @@ app.MapRazorComponents<App>()
 // Add additional endpoints required by the Identity /Account Razor components.
 app.MapAdditionalIdentityEndpoints();
 
+#region Minimal APIs
+int pageSize = builder.Configuration.GetValue<int>("Pagination:PageSize");
+
+//API -> GET -> Lista Paginada de Categorias....
+app.MapGet("/api/categories", async (
+    ICategoryRepository repository,
+    [FromQuery] int companyId,
+    [FromQuery] int pageIndex) =>
+{
+    var data = await repository.GetAll(companyId, pageIndex, pageSize);
+
+    return Results.Ok(data);
+});
+
+#endregion
 app.Run();
