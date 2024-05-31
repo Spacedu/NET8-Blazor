@@ -116,7 +116,6 @@ app.MapAdditionalIdentityEndpoints();
 #region Minimal APIs
 int pageSize = builder.Configuration.GetValue<int>("Pagination:PageSize");
 
-//API -> GET -> Lista Paginada de Categorias....
 app.MapGet("/api/categories", async (
     ICategoryRepository repository,
     [FromQuery] int companyId,
@@ -124,6 +123,17 @@ app.MapGet("/api/categories", async (
 {
     var data = await repository.GetAll(companyId, pageIndex, pageSize);
 
+    return Results.Ok(data);
+});
+
+app.MapGet("/api/companies", async (
+    ICompanyRepository repository,
+    [FromQuery]Guid applicationUserId,
+    [FromQuery] int pageIndex,
+    [FromQuery] string searchWord
+) => {
+
+    var data = await repository.GetAll(applicationUserId, pageIndex, pageSize, searchWord);
     return Results.Ok(data);
 });
 
