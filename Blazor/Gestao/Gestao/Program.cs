@@ -144,7 +144,7 @@ app.MapGet("/api/accounts", async(
     [FromQuery] int pageIndex,
     [FromQuery] string searchWord
 ) =>{
-    var data = repository.GetAll(companyId, pageIndex, pageSize, searchWord);
+    var data = await repository.GetAll(companyId, pageIndex, pageSize, searchWord);
     return Results.Ok(data);
 });
 
