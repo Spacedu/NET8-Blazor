@@ -3,10 +3,10 @@
 @rendermode InteractiveAuto
 <div class="card">
     <div class="card-header align-items-center d-flex">
-        <h4 class="card-title mb-0 flex-grow-1">Recent Orders</h4>
+        <h4 class="card-title mb-0 flex-grow-1">Empresas</h4>
         <div class="flex-shrink-0">
-            <button type="button" class="btn btn-soft-info btn-sm material-shadow-none">
-                <i class="ri-file-list-3-line align-middle"></i> Generate Report
+            <button type="button" class="btn btn-primary btn-sm material-shadow-none">
+                <i class="ri-file-list-3-line align-middle"></i> Cadastrar
             </button>
         </div>
     </div><!-- end card header -->
@@ -14,142 +14,33 @@
     <div class="card-body">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <button class="btn btn-outline-success material-shadow-none" type="button" id="button-addon2">Button</button>
+                    <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2" placeholder="Digite sua pesquisa">
+                    <button class="btn btn-outline-success material-shadow-none" type="button" id="button-addon2">Pesquisar</button>
                 </div>
             </div>
         <div class="table-responsive mt-4" style="margin-left: -16px; margin-right: -16px;">
             <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
                 <thead class="text-muted table-light">
                     <tr>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Vendor</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Rating</th>
+                        <th scope="col">Nome fantasia</th>
+                        <th scope="col">CNPJ</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2112</a>
+                            Mercado Costa
                         </td>
                         <td>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-2">
-                                    <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-xs rounded-circle material-shadow">
-                                </div>
-                                <div class="flex-grow-1">Alex Smith</div>
-                            </div>
+                            123.153.0001/14
                         </td>
-                        <td>Clothes</td>
+                        <td>Quadra 1 Bloco 2 LT 1-5</td>
                         <td>
-                            <span class="text-success">$109.00</span>
-                        </td>
-                        <td>Zoetic Fashion</td>
-                        <td>
-                            <span class="badge bg-success-subtle text-success">Paid</span>
-                        </td>
-                        <td>
-                            <h5 class="fs-14 fw-medium mb-0">5.0<span class="text-muted fs-11 ms-1">(61 votes)</span></h5>
-                        </td>
-                    </tr><!-- end tr -->
-                    <tr>
-                        <td>
-                            <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2111</a>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-2">
-                                    <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded-circle material-shadow">
-                                </div>
-                                <div class="flex-grow-1">Jansh Brown</div>
-                            </div>
-                        </td>
-                        <td>Kitchen Storage</td>
-                        <td>
-                            <span class="text-success">$149.00</span>
-                        </td>
-                        <td>Micro Design</td>
-                        <td>
-                            <span class="badge bg-warning-subtle text-warning">Pending</span>
-                        </td>
-                        <td>
-                            <h5 class="fs-14 fw-medium mb-0">4.5<span class="text-muted fs-11 ms-1">(61 votes)</span></h5>
-                        </td>
-                    </tr><!-- end tr -->
-                    <tr>
-                        <td>
-                            <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2109</a>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-2">
-                                    <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded-circle material-shadow">
-                                </div>
-                                <div class="flex-grow-1">Ayaan Bowen</div>
-                            </div>
-                        </td>
-                        <td>Bike Accessories</td>
-                        <td>
-                            <span class="text-success">$215.00</span>
-                        </td>
-                        <td>Nesta Technologies</td>
-                        <td>
-                            <span class="badge bg-success-subtle text-success">Paid</span>
-                        </td>
-                        <td>
-                            <h5 class="fs-14 fw-medium mb-0">4.9<span class="text-muted fs-11 ms-1">(89 votes)</span></h5>
-                        </td>
-                    </tr><!-- end tr -->
-                    <tr>
-                        <td>
-                            <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2108</a>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-2">
-                                    <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-xs rounded-circle material-shadow">
-                                </div>
-                                <div class="flex-grow-1">Prezy Mark</div>
-                            </div>
-                        </td>
-                        <td>Furniture</td>
-                        <td>
-                            <span class="text-success">$199.00</span>
-                        </td>
-                        <td>Syntyce Solutions</td>
-                        <td>
-                            <span class="badge bg-danger-subtle text-danger">Unpaid</span>
-                        </td>
-                        <td>
-                            <h5 class="fs-14 fw-medium mb-0">4.3<span class="text-muted fs-11 ms-1">(47 votes)</span></h5>
-                        </td>
-                    </tr><!-- end tr -->
-                    <tr>
-                        <td>
-                            <a href="apps-ecommerce-order-details.html" class="fw-medium link-primary">#VZ2107</a>
-                        </td>
-                        <td>
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-2">
-                                    <img src="assets/images/users/avatar-6.jpg" alt="" class="avatar-xs rounded-circle material-shadow">
-                                </div>
-                                <div class="flex-grow-1">Vihan Hudda</div>
-                            </div>
-                        </td>
-                        <td>Bags and Wallets</td>
-                        <td>
-                            <span class="text-success">$330.00</span>
-                        </td>
-                        <td>iTest Factory</td>
-                        <td>
-                            <span class="badge bg-success-subtle text-success">Paid</span>
-                        </td>
-                        <td>
-                            <h5 class="fs-14 fw-medium mb-0">4.7<span class="text-muted fs-11 ms-1">(161 votes)</span></h5>
+                            <a href="#" class="btn btn-sm btn-soft-success"><i class=" ri-arrow-right-line me-1"></i>Selecionar</a>
+                            <a href="#" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
+                            <a href="#" class="btn btn-sm btn-soft-danger"><i class=" ri-delete-bin-line"></i></a>
                         </td>
                     </tr><!-- end tr -->
                 </tbody><!-- end tbody -->
@@ -158,7 +49,7 @@
         <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
             <div class="col-sm">
                 <div class="text-muted">
-                    Showing <span class="fw-semibold">5</span> of <span class="fw-semibold">25</span> Results
+                    Mostrando <span class="fw-semibold">5</span> de <span class="fw-semibold">25</span> registros.
                 </div>
             </div>
             <div class="col-sm-auto  mt-3 mt-sm-0">
