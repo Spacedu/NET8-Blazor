@@ -10,6 +10,14 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
 
+
+builder.Services.AddScoped<HttpClient>(options => {
+    var httpClient = new HttpClient();
+    httpClient.BaseAddress = new Uri("https://localhost:7177");
+
+    return httpClient;
+});
+
 builder.Services.AddScoped<IAccountRepository, AccountService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryService>();
 builder.Services.AddScoped<ICompanyRepository, CompanyService>();
