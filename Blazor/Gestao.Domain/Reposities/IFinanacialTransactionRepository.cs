@@ -2,7 +2,7 @@
 using Gestao.Domain;
 using Gestao.Domain.Enums;
 
-namespace Gestao.Data.Repositories
+namespace Gestao.Domain.Repositories
 {
     public interface IFinanacialTransactionRepository
     {

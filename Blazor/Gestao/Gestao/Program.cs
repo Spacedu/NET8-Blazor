@@ -4,6 +4,7 @@ using Gestao.Components.Account;
 using Gestao.Data;
 using Gestao.Data.Repositories;
 using Gestao.Domain.Enums;
+using Gestao.Domain.Repositories;
 using Gestao.Libraries.Mail;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
