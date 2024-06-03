@@ -5,6 +5,7 @@
 @inject ICompanyRepository repository
 @inject AuthenticationStateProvider provider
 @inject IConfiguration configuration
+
 <div class="card">
     <div class="card-header align-items-center d-flex">
         <h4 class="card-title mb-0 flex-grow-1">Empresas</h4>
@@ -47,70 +48,52 @@
                     else
                     {
                         @foreach(var itens in Paginated.Items){
-                        <tr>
-                            <td>
-                                @itens.TradeName
-                            </td>
-                            <td>
-                                @itens.TaxId
-                            </td>
-                            <td>@itens.Address</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-soft-success"><i class=" ri-arrow-right-line me-1"></i>Selecionar</a>
-                                <a href="#" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
-                                <a href="#" class="btn btn-sm btn-soft-danger"><i class=" ri-delete-bin-line"></i></a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    @itens.TradeName
+                                </td>
+                                <td>
+                                    @itens.TaxId
+                                </td>
+                                <td>@itens.Address</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-soft-success"><i class=" ri-arrow-right-line me-1"></i>Selecionar</a>
+                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
+                                    <a href="#" class="btn btn-sm btn-soft-danger"><i class=" ri-delete-bin-line"></i></a>
+                                </td>
+                            </tr>
                         }
                     }
                 </tbody>
             </table>
         </div>
-        <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-            <div class="col-sm">
-                <div class="text-muted">
-                    Mostrando <span class="fw-semibold">5</span> de <span class="fw-semibold">25</span> registros.
-                </div>
-            </div>
-            <div class="col-sm-auto  mt-3 mt-sm-0">
-                <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link">←</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item active">
-                        <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">→</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <Pagination />
     </div>
 </div>
 
 @code {
     private Guid ApplicationUserId;
+    private int PageIndex = 1;
     private int PageSize;
+    private string SearchWord = string.Empty;
+
     private PaginatedList<Company>? Paginated;
 
-    private string SearchWord = string.Empty;
     private async Task OnSearch()
     {
-        Paginated = await repository.GetAll(ApplicationUserId, 1, PageSize, SearchWord);
+        PageIndex = 1;
+        await LoadDataAsync();
     }
 
     protected override async Task OnInitializedAsync()
     {
         PageSize = configuration.GetValue<int>("Pagination:PageSize");
         await GetAuthenticationUserId();
-        Paginated = await repository.GetAll(ApplicationUserId, 1, PageSize, SearchWord);
+        await LoadDataAsync();
+    }
+    private async Task LoadDataAsync()
+    {
+        Paginated = await repository.GetAll(ApplicationUserId, PageIndex, PageSize, SearchWord);
     }
 
     private async Task GetAuthenticationUserId()

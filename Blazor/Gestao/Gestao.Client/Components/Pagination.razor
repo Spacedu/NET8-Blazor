@@ -1,0 +1,41 @@
+﻿@typeparam T
+
+<div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+    <div class="col-sm">
+        <div class="text-muted">
+            Mostrando <span class="fw-semibold">5</span> de <span class="fw-semibold">25</span> registros.
+        </div>
+    </div>
+    <div class="col-sm-auto  mt-3 mt-sm-0">
+        <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+            <li class="page-item disabled">
+                <a href="#" class="page-link">←</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">1</a>
+            </li>
+            <li class="page-item active">
+                <a href="#" class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">→</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter] public PaginatedList<T> Paginated { get; set; } = null!;
+
+    [Parameter] public EventCallback<int> OnPageChanged { get; set; }
+
+    private async Task NavigateToPage(int pageNumber)
+    {
+        if (pageNumber < 1 || pageNumber > Paginated.TotalPages) return;
+
+        await OnPageChanged.InvokeAsync(pageNumber);
+    }
+}
