@@ -67,7 +67,7 @@
                 </tbody>
             </table>
         </div>
-        <Pagination />
+        <Pagination Paginated="@Paginated" OnPageChanged="@OnPageChanged"/>
     </div>
 </div>
 
@@ -79,18 +79,25 @@
 
     private PaginatedList<Company>? Paginated;
 
-    private async Task OnSearch()
-    {
-        PageIndex = 1;
-        await LoadDataAsync();
-    }
-
     protected override async Task OnInitializedAsync()
     {
         PageSize = configuration.GetValue<int>("Pagination:PageSize");
         await GetAuthenticationUserId();
         await LoadDataAsync();
     }
+
+    private async Task OnSearch()
+    {
+        PageIndex = 1;
+        await LoadDataAsync();
+    }
+    private async Task OnPageChanged(int pageNumber)
+    {
+        PageIndex = pageNumber;
+        await LoadDataAsync();
+    }
+
+
     private async Task LoadDataAsync()
     {
         Paginated = await repository.GetAll(ApplicationUserId, PageIndex, PageSize, SearchWord);
