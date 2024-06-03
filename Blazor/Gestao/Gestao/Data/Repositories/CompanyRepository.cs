@@ -25,6 +25,7 @@ namespace Gestao.Data.Repositories
                 .ToListAsync();
 
             var count = await _db.Companies.Where(a => a.UserId == applicationUserId).Where(a => a.TradeName.Contains(searchWord) || a.LegalName.Contains(searchWord)).CountAsync();
+            
             int totalPages = (int)Math.Ceiling((decimal)count / pageSize);
 
             return new PaginatedList<Company>(items, pageIndex, totalPages);

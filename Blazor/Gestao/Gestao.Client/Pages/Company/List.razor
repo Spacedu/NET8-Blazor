@@ -4,6 +4,7 @@
 @rendermode InteractiveAuto
 @inject ICompanyRepository repository
 @inject AuthenticationStateProvider provider
+@inject IConfiguration configuration
 <div class="card">
     <div class="card-header align-items-center d-flex">
         <h4 class="card-title mb-0 flex-grow-1">Empresas</h4>
@@ -45,20 +46,22 @@
                     }
                     else
                     {
+                        @foreach(var itens in Paginated.Items){
                         <tr>
                             <td>
-                                Mercado Costa
+                                @itens.TradeName
                             </td>
                             <td>
-                                123.153.0001/14
+                                @itens.TaxId
                             </td>
-                            <td>Quadra 1 Bloco 2 LT 1-5</td>
+                            <td>@itens.Address</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-soft-success"><i class=" ri-arrow-right-line me-1"></i>Selecionar</a>
                                 <a href="#" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
                                 <a href="#" class="btn btn-sm btn-soft-danger"><i class=" ri-delete-bin-line"></i></a>
                             </td>
                         </tr>
+                        }
                     }
                 </tbody>
             </table>
@@ -104,8 +107,9 @@
 
     protected override async Task OnInitializedAsync()
     {
+        var pageSize = configuration.GetValue<int>("Pagination:PageSize");
         await GetAuthenticationUserId();
-        Paginated = await repository.GetAll(ApplicationUserId, 1, 0, SearchWord);
+        Paginated = await repository.GetAll(ApplicationUserId, 1, pageSize, SearchWord);
     }
 
     private async Task GetAuthenticationUserId()
