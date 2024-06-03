@@ -20,4 +20,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\Pages\Account\" />
+    <Folder Include="Components\Pages\Category\" />
+    <Folder Include="Components\Pages\Financial\" />
+  </ItemGroup>
+
 </Project>
