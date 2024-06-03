@@ -97,19 +97,20 @@
 
 @code {
     private Guid ApplicationUserId;
+    private int PageSize;
     private PaginatedList<Company>? Paginated;
 
     private string SearchWord = string.Empty;
-    private void OnSearch()
+    private async Task OnSearch()
     {
-
+        Paginated = await repository.GetAll(ApplicationUserId, 1, PageSize, SearchWord);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        var pageSize = configuration.GetValue<int>("Pagination:PageSize");
+        PageSize = configuration.GetValue<int>("Pagination:PageSize");
         await GetAuthenticationUserId();
-        Paginated = await repository.GetAll(ApplicationUserId, 1, pageSize, SearchWord);
+        Paginated = await repository.GetAll(ApplicationUserId, 1, PageSize, SearchWord);
     }
 
     private async Task GetAuthenticationUserId()
