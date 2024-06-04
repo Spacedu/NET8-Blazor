@@ -1,28 +1,32 @@
 ﻿@typeparam T
-
-<div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
-    <div class="col-sm">
-        <div class="text-muted">
-            Mostrando página <span class="fw-semibold">@Paginated.PageIndex</span> de <span class="fw-semibold">@Paginated.TotalPages</span>.
+@if (Paginated != null)
+{
+    <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+        <div class="col-sm">
+            <div class="text-muted">
+                Mostrando página <span class="fw-semibold">@Paginated.PageIndex</span> de <span class="fw-semibold">@Paginated.TotalPages</span>.
+            </div>
+        </div>
+        <div class="col-sm-auto  mt-3 mt-sm-0">
+            <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
+                <li class="page-item @(Paginated.PageIndex == 1 ? "disabled": "")">
+                    <button @onclick="()=>NavigateToPage(Paginated.PageIndex - 1)" class="page-link">←</button>
+                </li>
+                
+                @for (int i = 1; i <= Paginated.TotalPages; i++)
+                {
+                    var j = i;
+                    <li class="page-item @(Paginated.PageIndex == j ? "active" : "")">
+                        <button @onclick="()=>NavigateToPage(j)" class="page-link">@j</button>
+                    </li>
+                }
+                <li class="page-item @(Paginated.PageIndex == Paginated.TotalPages ? "disabled":"")">
+                    <button @onclick="()=>NavigateToPage(Paginated.PageIndex + 1)" class="page-link">→</button>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="col-sm-auto  mt-3 mt-sm-0">
-        <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-            <li class="page-item @(Paginated.PageIndex == 1 ? "disabled": "")">
-                <a @onclick="()=>NavigateToPage(Paginated.PageIndex - 1)" class="page-link">←</a>
-            </li>
-            @for(int i = 1; i <= Paginated.TotalPages;i++){
-                <li class="page-item @(Paginated.PageIndex == i ? "active" : "")">
-                    <a @onclick="()=>NavigateToPage(i)" class="page-link">@i</a>
-                </li>
-            }
-            <li class="page-item @(Paginated.PageIndex == Paginated.TotalPages ? "disabled":"")">
-                <a @onclick="()=>NavigateToPage(Paginated.PageIndex + 1)" class="page-link">→</a>
-            </li>
-        </ul>
-    </div>
-</div>
-
+}
 @code {
     [Parameter] public PaginatedList<T> Paginated { get; set; } = null!;
 
