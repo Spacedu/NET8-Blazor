@@ -2,7 +2,7 @@
 @rendermode InteractiveServer
 @inject IJSRuntime JS
 @inject ICepService CepService
-
+@inject AuthenticationStateProvider AuthenticationStateProvider
 <PageTitle>
     Empresa - Cadastro
 </PageTitle>
@@ -114,9 +114,15 @@
     {
         await JS.InvokeVoidAsync("CompanyMaskInit");
     }
-    private void Submit()
+    private async Task Submit()
     {
+        //TODO - Tratar dados.
+        Company.CreatedAt = DateTimeOffset.Now;
+        Company.UserId = (await AuthenticationHelper.GetAuthenticationUserIdAsync(AuthenticationStateProvider)).Value;
 
+        //TODO - Salvar na banco.
+
+        //TODO - O que fazer depois de salvo(Mensagem, Redirecionar)
     }
     private async Task OnCepEntry(ChangeEventArgs e)
     {

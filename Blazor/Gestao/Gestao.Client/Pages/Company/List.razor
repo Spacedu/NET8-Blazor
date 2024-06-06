@@ -1,10 +1,9 @@
 ﻿@page "/Company/List"
-
 @attribute [Authorize]
 @rendermode InteractiveAuto
-@inject ICompanyRepository repository
-@inject AuthenticationStateProvider provider
-@inject IConfiguration configuration
+@inject ICompanyRepository CompanyRepository
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IConfiguration Configuration
 <PageTitle>
     Empresa - Lista
 </PageTitle>
@@ -83,8 +82,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        PageSize = configuration.GetValue<int>("Pagination:PageSize");
-        await GetAuthenticationUserId();
+        PageSize = Configuration.GetValue<int>("Pagination:PageSize");
+        ApplicationUserId = (await AuthenticationHelper.GetAuthenticationUserIdAsync(AuthenticationStateProvider)).Value;
         await LoadDataAsync();
     }
 
@@ -98,19 +97,8 @@
         PageIndex = pageNumber;
         await LoadDataAsync();
     }
-
-
     private async Task LoadDataAsync()
     {
-        Paginated = await repository.GetAll(ApplicationUserId, PageIndex, PageSize, SearchWord);
-    }
-
-    private async Task GetAuthenticationUserId()
-    {
-        var authenticationState = await provider.GetAuthenticationStateAsync();
-        var userId = authenticationState.User.Claims.FirstOrDefault(a => a.Type == ClaimTypes.NameIdentifier);
-
-        if(userId != null)
-            Guid.TryParse(userId.Value, out ApplicationUserId);
+        Paginated = await CompanyRepository.GetAll(ApplicationUserId, PageIndex, PageSize, SearchWord);
     }
 }
