@@ -1,8 +1,13 @@
 ﻿@page "/Company/Add"
 @rendermode InteractiveServer
+
 @inject IJSRuntime JS
-@inject ICepService CepService
+@inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
+
+@inject ICepService CepService
+@inject ICompanyRepository CompanyRepository
+
 <PageTitle>
     Empresa - Cadastro
 </PageTitle>
@@ -116,13 +121,13 @@
     }
     private async Task Submit()
     {
-        //TODO - Tratar dados.
         Company.CreatedAt = DateTimeOffset.Now;
         Company.UserId = (await AuthenticationHelper.GetAuthenticationUserIdAsync(AuthenticationStateProvider)).Value;
-
-        //TODO - Salvar na banco.
-
-        //TODO - O que fazer depois de salvo(Mensagem, Redirecionar)
+       
+        await CompanyRepository.Add(Company);
+        
+        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        NavigationManager.NavigateTo("/Company/List");
     }
     private async Task OnCepEntry(ChangeEventArgs e)
     {
