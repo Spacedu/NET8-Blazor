@@ -19,21 +19,21 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="razaosocial" class="form-label">Razão Social</label>
-                                <InputText @bind-Value="Company!.LegalName" type="text" autocomplete="not" class="form-control" id="razaosocial"/>
+                                <InputText @bind-Value="Company!.LegalName" type="text" autocomplete="not" class="form-control" id="razaosocial" />
                                 <ValidationMessage For="()=> Company!.LegalName" />
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="nomefantasia" class="form-label">Nome Fantasia</label>
-                                <InputText @bind-Value="Company!.TradeName"  type="text" autocomplete="not" class="form-control" id="nomefantasia" />
+                                <InputText @bind-Value="Company!.TradeName" type="text" autocomplete="not" class="form-control" id="nomefantasia" />
                                 <ValidationMessage For="()=> Company!.TradeName" />
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="cnpj" class="form-label">CNPJ</label>
-                                <InputText @bind-Value="Company!.TaxId"  type="text" autocomplete="not" class="form-control" id="cnpj" />
+                                <InputText @bind-Value="Company!.TaxId" type="text" autocomplete="not" class="form-control" id="cnpj" />
                                 <ValidationMessage For="()=> Company!.TaxId" />
                             </div>
                         </div>
@@ -42,7 +42,17 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="cep" class="form-label">CEP</label>
-                                <InputText @bind-Value="Company!.PostalCode" type="text" autocomplete="not" class="form-control" id="cep" @oninput="OnCepEntry" />
+                                <div class="input-group">
+                                    <InputText @bind-Value="Company!.PostalCode" type="text" autocomplete="not" class="@(Loading ? "form-control input-border-right-none" : "form-control")" id="cep" @oninput="OnCepEntry" />
+                                    @if (Loading)
+                                    {
+                                        <span class="input-group-text input-group-text-bg-transparent">
+                                            <div class="spinner-border spinner-border-sm text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </span>
+                                    }
+                                </div>
                                 <ValidationMessage For="()=> Company!.PostalCode" />
                             </div>
                         </div>
@@ -98,6 +108,7 @@
 @code {
     [SupplyParameterFromForm]
     private Gestao.Domain.Company Company { get; set; } = new();
+    private bool Loading { get; set; } = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -109,17 +120,28 @@
     }
     private async Task OnCepEntry(ChangeEventArgs e)
     {
-        if(e.Value!.ToString()!.Length == 10)
+        if (e.Value!.ToString()!.Length == 10)
         {
+            Loading = true;
+            Company.State = string.Empty;
+            Company.City = string.Empty;
+            Company.Neighborhood = string.Empty;
+            Company.Address = string.Empty;
+            await Task.Delay(3000);
             var address = await CepService.SearchByPostalCode(e.Value.ToString()!);
 
             if (address is null)
+            {
+                Loading = false;
                 return;
+            }
+
 
             Company.State = address.UF;
             Company.City = address.Localidade;
             Company.Neighborhood = address.Bairro;
             Company.Address = address.Logradouro;
+            Loading = false;
         }
     }
 }

@@ -53,3 +53,14 @@ h1:focus {
 input[readonly], input[readonly]:focus {
     background-color: rgb(239, 242, 247);
 }
+
+.spinner-border-sm {
+    height: 1rem;
+    width: 1rem;
+}
+.input-border-right-none {
+    border-right: none !important;
+}
+.input-group-text-bg-transparent {
+    background-color: transparent !important;
+}
