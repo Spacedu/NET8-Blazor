@@ -6,6 +6,7 @@ using Gestao.Data.Repositories;
 using Gestao.Domain.Enums;
 using Gestao.Domain.Repositories;
 using Gestao.Libraries.Mail;
+using Gestao.Libraries.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -78,6 +79,7 @@ builder.Services.AddSingleton<SmtpClient>(options =>
     return smtp;
 });
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, EmailSender>();
+builder.Services.AddSingleton<ICepService, CepService>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();

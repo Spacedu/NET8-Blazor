@@ -1,6 +1,8 @@
 ﻿@page "/Company/Add"
 @rendermode InteractiveServer
 @inject IJSRuntime JS
+@inject ICepService CepService
+
 <PageTitle>
     Empresa - Cadastro
 </PageTitle>
@@ -47,21 +49,21 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="estado" class="form-label">Estado</label>
-                                <InputText @bind-Value="Company!.State" type="text" autocomplete="not" disabled class="form-control" id="estado" />
+                                <InputText @bind-Value="Company!.State" type="text" autocomplete="not" readonly class="form-control" id="estado" />
                                 <ValidationMessage For="()=> Company!.State" />
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="cidade" class="form-label">Cidade</label>
-                                <InputText @bind-Value="Company!.City" type="text" autocomplete="not" disabled class="form-control" id="cidade" />
+                                <InputText @bind-Value="Company!.City" type="text" autocomplete="not" readonly class="form-control" id="cidade" />
                                 <ValidationMessage For="()=> Company!.City" />
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="bairro" class="form-label">Bairro</label>
-                                <InputText @bind-Value="Company!.Neighborhood" type="text" autocomplete="not" disabled class="form-control" id="bairro" />
+                                <InputText @bind-Value="Company!.Neighborhood" type="text" autocomplete="not" readonly class="form-control" id="bairro" />
                                 <ValidationMessage For="()=> Company!.Neighborhood" />
                             </div>
                         </div>
