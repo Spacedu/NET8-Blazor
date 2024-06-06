@@ -42,7 +42,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="cep" class="form-label">CEP</label>
-                                <InputText @bind-Value="Company!.PostalCode" type="text" autocomplete="not" class="form-control" id="cep" />
+                                <InputText @bind-Value="Company!.PostalCode" type="text" autocomplete="not" class="form-control" id="cep" @oninput="OnCepEntry" />
                                 <ValidationMessage For="()=> Company!.PostalCode" />
                             </div>
                         </div>
@@ -97,18 +97,29 @@
 
 @code {
     [SupplyParameterFromForm]
-    private Gestao.Domain.Company? Company { get; set; }
+    private Gestao.Domain.Company Company { get; set; } = new();
 
-    protected override void OnInitialized()
-    {
-        Company = new();
-    }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("CompanyMaskInit");
     }
     private void Submit()
     {
-        
+
+    }
+    private async Task OnCepEntry(ChangeEventArgs e)
+    {
+        if(e.Value!.ToString()!.Length == 10)
+        {
+            var address = await CepService.SearchByPostalCode(e.Value.ToString()!);
+
+            if (address is null)
+                return;
+
+            Company.State = address.UF;
+            Company.City = address.Localidade;
+            Company.Neighborhood = address.Bairro;
+            Company.Address = address.Logradouro;
+        }
     }
 }
