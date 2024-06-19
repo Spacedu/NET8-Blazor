@@ -1,0 +1,177 @@
+﻿@page "/Company/Edit/{id:int}"
+@rendermode InteractiveServer
+
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@inject ICepService CepService
+@inject ICompanyRepository CompanyRepository
+
+<PageTitle>
+    Empresa - Atualizar
+</PageTitle>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Atualizar empresa</h4>
+            </div>
+            <div class="card-body">
+                <EditForm Model="Company" OnValidSubmit="Submit" FormName="Update">
+                    <DataAnnotationsValidator />
+                    <div class="row">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="razaosocial" class="form-label">Razão Social</label>
+                                <InputText @bind-Value="Company!.LegalName" type="text" autocomplete="not" class="form-control" id="razaosocial" />
+                                <ValidationMessage For="()=> Company!.LegalName" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="nomefantasia" class="form-label">Nome Fantasia</label>
+                                <InputText @bind-Value="Company!.TradeName" type="text" autocomplete="not" class="form-control" id="nomefantasia" />
+                                <ValidationMessage For="()=> Company!.TradeName" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="cnpj" class="form-label">CNPJ</label>
+                                <InputText @bind-Value="Company!.TaxId" type="text" autocomplete="not" class="form-control" id="cnpj" />
+                                <ValidationMessage For="()=> Company!.TaxId" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="cep" class="form-label">CEP</label>
+                                <div class="input-group">
+                                    <InputText @bind-Value="Company!.PostalCode" type="text" autocomplete="not" class="@(Loading ? "form-control input-border-right-none" : "form-control")" id="cep" @oninput="OnCepEntry" />
+                                    @if (Loading)
+                                    {
+                                        <span class="input-group-text input-group-text-bg-transparent">
+                                            <div class="spinner-border spinner-border-sm text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </span>
+                                    }
+                                </div>
+                                <ValidationMessage For="()=> Company!.PostalCode" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="estado" class="form-label">Estado</label>
+                                <InputText @bind-Value="Company!.State" type="text" autocomplete="not" readonly class="form-control" id="estado" />
+                                <ValidationMessage For="()=> Company!.State" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="cidade" class="form-label">Cidade</label>
+                                <InputText @bind-Value="Company!.City" type="text" autocomplete="not" readonly class="form-control" id="cidade" />
+                                <ValidationMessage For="()=> Company!.City" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="bairro" class="form-label">Bairro</label>
+                                <InputText @bind-Value="Company!.Neighborhood" type="text" autocomplete="not" readonly class="form-control" id="bairro" />
+                                <ValidationMessage For="()=> Company!.Neighborhood" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-6 col-md-6">
+                            <div>
+                                <label for="endereco" class="form-label">Endereço</label>
+                                <InputText @bind-Value="Company!.Address" type="text" autocomplete="not" class="form-control" id="endereco" />
+                                <ValidationMessage For="()=> Company!.Address" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="complemento" class="form-label">Complemento</label>
+                                <InputText @bind-Value="Company!.Complement" type="text" autocomplete="not" class="form-control" id="complemento" />
+                                <ValidationMessage For="()=> Company!.Complement" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="d-flex justify-content-between">
+                            <a href="/Company/List" class="btn btn-light">Voltar</a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Gestao.Domain.Company Company { get; set; } = new();
+    private bool Loading { get; set; } = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var userId = (await AuthenticationHelper.GetAuthenticationUserIdAsync(AuthenticationStateProvider)).Value;
+        var company = await CompanyRepository.Get(Id);
+
+        if(company is null)
+        {
+            await JS.InvokeVoidAsync("alert", "A empresa selecionada não existe no banco!");
+            NavigationManager.NavigateTo("/Company/List");
+        }
+
+        if(company!.UserId != userId)
+        {
+            await JS.InvokeVoidAsync("alert", "A empresa não pertence ao usuário logado!");
+            NavigationManager.NavigateTo("/Company/List");
+        }
+
+        Company = company;
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JS.InvokeVoidAsync("CompanyMaskInit");
+    }
+
+
+    private async Task Submit()
+    {
+        await CompanyRepository.Update(Company);
+
+        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        NavigationManager.NavigateTo("/Company/List");
+    }
+    private async Task OnCepEntry(ChangeEventArgs e)
+    {
+        if (e.Value!.ToString()!.Length == 10)
+        {
+            Loading = true;
+            Company.State = string.Empty;
+            Company.City = string.Empty;
+            Company.Neighborhood = string.Empty;
+            Company.Address = string.Empty;
+            await Task.Delay(3000);
+            var address = await CepService.SearchByPostalCode(e.Value.ToString()!);
+
+            if (address is null)
+            {
+                Loading = false;
+                return;
+            }
+
+            Company.State = address.UF;
+            Company.City = address.Localidade;
+            Company.Neighborhood = address.Bairro;
+            Company.Address = address.Logradouro;
+            Loading = false;
+        }
+    }
+}
