@@ -17,7 +17,7 @@ builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticat
 
 builder.Services.AddScoped<HttpClient>(options => {
     var httpClient = new HttpClient();
-    httpClient.BaseAddress = new Uri("https://localhost:7177");
+    httpClient.BaseAddress = new Uri("http://localhost:5262");
 
     return httpClient;
 });
