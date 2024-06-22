@@ -2,6 +2,19 @@
 {
     public class StateContainer
     {
-        public int Counter { get; set; }
+        private int _counter;
+        public int Counter { 
+            get { return _counter; }
+            set { 
+                _counter = value;
+                NotificationHasChanged();
+            }
+        }
+        public Action? Notification; //Componentes devem se inscrever nessa Action
+
+        private void NotificationHasChanged()
+        {
+            Notification?.Invoke();
+        }
     }
 }

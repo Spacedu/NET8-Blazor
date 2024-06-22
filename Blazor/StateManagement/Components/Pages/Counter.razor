@@ -1,18 +1,33 @@
 ﻿@page "/counter"
 @inject StateContainer State
+@implements IDisposable
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @State.Counter</p>
+<p role="status">Current count: @State.Counter -> @NotificationText</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <CounterChild />
 
+
 @code {
+    public string? NotificationText { get; set; }
+    protected override void OnInitialized()
+    {
+        State.Notification += OnNotification;
+    }
+    private void OnNotification()
+    {
+        NotificationText = "Notificado às: " + DateTime.Now;
+    }
     private void IncrementCount()
     {
         State.Counter++;
+    }
+    public void Dispose()
+    {
+        State.Notification -= OnNotification;
     }
 }
