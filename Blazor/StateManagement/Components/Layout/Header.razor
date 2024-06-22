@@ -1,4 +1,16 @@
 ﻿@inject StateContainer State
+@implements IDisposable
 <div class="top-row px-4">
     <span>Contagem: @State.Counter</span><a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
 </div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        State.Notification += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        State.Notification -= StateHasChanged;
+    }
+}
