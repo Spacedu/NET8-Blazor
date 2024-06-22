@@ -1,3 +1,4 @@
-﻿<div class="top-row px-4">
-    <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+﻿@inject StateContainer State
+<div class="top-row px-4">
+    <span>Contagem: @State.Counter</span><a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
 </div>

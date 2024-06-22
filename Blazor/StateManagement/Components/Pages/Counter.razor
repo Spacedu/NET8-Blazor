@@ -1,20 +1,18 @@
 ﻿@page "/counter"
-
+@inject StateContainer State
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p role="status">Current count: @State.Counter</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-<CounterChild Count="currentCount" IncrementParentEvent="IncrementCount" />
+<CounterChild />
 
 @code {
-    private int currentCount = 0;
-
     private void IncrementCount()
     {
-        currentCount++;
+        State.Counter++;
     }
 }
