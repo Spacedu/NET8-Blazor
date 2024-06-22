@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gestao.Domain.Libraries.Validations;
+using Gestao.Domain.Interfaces;
 
 namespace Gestao.Domain
 {
-    public class Company
+    public class Company : ISoftDelete
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "O campo 'Razão Social' é obrigatório!")]
@@ -55,6 +56,7 @@ namespace Gestao.Domain
 
 
         public DateTimeOffset CreatedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get; set; }
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 

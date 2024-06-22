@@ -1,8 +1,9 @@
 ﻿using Gestao.Domain.Enums;
+using Gestao.Domain.Interfaces;
 
 namespace Gestao.Domain
 {
-    public class FinancialTransaction
+    public class FinancialTransaction : ISoftDelete
     {
         public int Id { get; set; }
         public TypeFinancialTransaction TypeFinancialTransaction { get; set; }
@@ -18,7 +19,7 @@ namespace Gestao.Domain
         public decimal AmoundPaid { get; set; }
         public string? Observation { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
-        
+        public DateTimeOffset? DeletedAt { get; set; }
 
         public ICollection<Document>? Documents { get; set; }
 
