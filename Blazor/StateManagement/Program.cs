@@ -1,11 +1,12 @@
 using StateManagement.Components;
+using StateManagement.States;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
+builder.Services.AddScoped<StateContainer>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
