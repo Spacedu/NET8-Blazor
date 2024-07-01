@@ -13,4 +13,12 @@
         State.Counter++;
     }
 
+    protected override void OnInitialized()
+    {
+        State.Notification += StateHasChanged;
+    }
+    public void Dispose()
+    {
+        State.Notification -= StateHasChanged;
+    }
 }
