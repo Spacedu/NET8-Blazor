@@ -1,4 +1,6 @@
+using Blazored.LocalStorage;
 using Gestao.Client;
+using Gestao.Client.Libraries.Notifications;
 using Gestao.Client.Services;
 using Gestao.Domain.Repositories;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -21,6 +23,8 @@ builder.Services.AddScoped<HttpClient>(options => {
 
     return httpClient;
 });
+builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddScoped<CompanyOnSelectedNotification>();
 
 builder.Services.AddScoped<IAccountRepository, AccountService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryService>();

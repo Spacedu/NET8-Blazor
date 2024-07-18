@@ -4,6 +4,7 @@
 @inject ICompanyRepository CompanyRepository
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IConfiguration Configuration
+@inject ILocalStorageService LocalStorage
 <PageTitle>
     Empresa - Lista
 </PageTitle>
@@ -104,8 +105,9 @@
     private async Task SelectCompany(Company company)
     {
         //TODO - Armazenar a Company no Local Storage.
+        await LocalStorage.SetItemAsync(AppConstants.LocalStorageCompany, company);
 
-        //TODO - CompanyOnSelectedNotificationState > Notification
+        //TODO - CompanyOnSelectedNotification > Notification
 
     }
 }
