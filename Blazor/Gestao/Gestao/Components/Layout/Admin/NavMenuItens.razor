@@ -20,49 +20,48 @@
                         Empresa
                     </NavLink>
                 </li>
+                @if (companySelected)
+                {
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/Account/List">
+                            Conta
+                        </NavLink>
+                    </li>
 
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="/Account/List">
-                        Conta
-                    </NavLink>
-                </li>
-
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="/Category/List">
-                        Categoria
-                    </NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink class="nav-link" href="auth">
-                        Auth Required
-                    </NavLink>
-                </li>
-
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="/Category/List">
+                            Categoria
+                        </NavLink>
+                    </li>
+                }
 
             </ul>
         </div>
-    </li> <!-- end Dashboard Menu -->
-    <li class="nav-item">
-        <a class="nav-link menu-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-            <i class="ri-money-dollar-circle-line"></i> <span data-key="t-account"> Contas</span>
-        </a>
-        <div class="collapse menu-dropdown" id="sidebarAccount">
-            <ul class="nav nav-sm flex-column">
-                <li class="nav-item">
-                    <NavLink href="/AccountMamagement/Pay/List" class="nav-link" data-key="t-pay">Pagar</NavLink>
-                </li>
-                <li class="nav-item">
-                    <NavLink href="/AccountMamagement/Receive/List" class="nav-link" data-key="t-receive">Receber</NavLink>
-                </li>
-            </ul>
-        </div>
-    </li> <!-- end Dashboard Menu -->
-
+    </li>
+    @if (companySelected)
+    {
+        <li class="nav-item">
+            <a class="nav-link menu-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                <i class="ri-money-dollar-circle-line"></i> <span data-key="t-account"> Contas</span>
+            </a>
+            <div class="collapse menu-dropdown" id="sidebarAccount">
+                <ul class="nav nav-sm flex-column">
+                    <li class="nav-item">
+                        <NavLink href="/AccountMamagement/Pay/List" class="nav-link" data-key="t-pay">Pagar</NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink href="/AccountMamagement/Receive/List" class="nav-link" data-key="t-receive">Receber</NavLink>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    }
 </ul>
 
 
 
 @code {
+    private bool companySelected = false;
     private string? currentUrl;
 
     protected override void OnInitialized()

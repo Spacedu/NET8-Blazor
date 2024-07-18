@@ -58,7 +58,7 @@
                                 </td>
                                 <td>@item.Address</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-soft-success"><i class=" ri-arrow-right-line me-1"></i>Selecionar</a>
+                                    <button class="btn btn-sm btn-soft-success" @onclick="()=>SelectCompany(item)"><i class=" ri-arrow-right-line me-1"></i>Selecionar</button>
                                     <a href="/Company/Edit/@item.Id" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
                                     <a href="/Company/Detail/@item.Id" class="btn btn-sm btn-soft-danger"><i class="ri-delete-bin-line"></i></a>
                                 </td>
@@ -100,5 +100,12 @@
     private async Task LoadDataAsync()
     {
         Paginated = await CompanyRepository.GetAll(ApplicationUserId, PageIndex, PageSize, SearchWord);
+    }
+    private async Task SelectCompany(Company company)
+    {
+        //TODO - Armazenar a Company no Local Storage.
+
+        //TODO - CompanyOnSelectedNotificationState > Notification
+
     }
 }
