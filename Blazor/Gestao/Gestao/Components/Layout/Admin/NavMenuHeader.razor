@@ -58,11 +58,13 @@
                 <AuthorizeView>
                     <Authorized>
                         @if(hasCompanySelected){
-                            <div class="p-3">
+                            <a href="/Company/List">
+                                <div class="p-3">
                                 <strong>@Company.LegalName</strong>
                                 <br />
                                 <small class="fs-10"><strong>CNPJ: </strong>@Company.TaxId</small>
                             </div>
+                            </a>
                         }
                         <div class="dropdown ms-sm-3 header-item topbar-user">
                             <button type="button" class="btn material-shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
