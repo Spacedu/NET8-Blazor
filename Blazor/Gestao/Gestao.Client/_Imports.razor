@@ -1,22 +1,23 @@
-﻿@using Gestao.Client.Libraries.Constants
-@using System.Net.Http
+﻿@using System.Net.Http
 @using System.Net.Http.Json
+@using System.Security.Claims
+@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
-@using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
-@using Microsoft.JSInterop
-@using Gestao.Client
-@using Microsoft.AspNetCore.Authorization
-@using System.Security.Claims
-@using Blazored.LocalStorage
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
 
+@using Gestao.Domain
+@using Gestao.Domain.Repositories
+
+@using Gestao.Client
 @using Gestao.Client.Components
 @using Gestao.Client.Libraries.Utilities
 @using Gestao.Client.Libraries.Helpers
-@using Gestao.Domain.Repositories
-@using Gestao.Domain
+@using Gestao.Client.Libraries.Notifications
+@using Gestao.Client.Libraries.Constants
 
-
+@using Blazored.LocalStorage

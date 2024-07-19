@@ -1,6 +1,9 @@
 ﻿@implements IDisposable
 
+@rendermode InteractiveServer
 @inject NavigationManager NavigationManager
+@inject ILocalStorageService LocalStorage
+@inject CompanyOnSelectedNotification Notification
 
 <ul class="navbar-nav" id="navbar-nav">
     <li class="menu-title"><span data-key="t-menu">Menu</span></li>
@@ -20,7 +23,7 @@
                         Empresa
                     </NavLink>
                 </li>
-                @if (companySelected)
+                @if (hasCompanySelected)
                 {
                     <li class="nav-item">
                         <NavLink class="nav-link" href="/Account/List">
@@ -38,7 +41,7 @@
             </ul>
         </div>
     </li>
-    @if (companySelected)
+    @if (hasCompanySelected)
     {
         <li class="nav-item">
             <a class="nav-link menu-link" href="#sidebarAccount" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
@@ -61,13 +64,20 @@
 
 
 @code {
-    private bool companySelected = false;
+    private bool hasCompanySelected = false;
     private string? currentUrl;
 
     protected override void OnInitialized()
     {
-        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
         NavigationManager.LocationChanged += OnLocationChanged;
+        Notification.OnCompanySelected += OnCompanySelected;
+
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        hasCompanySelected = await LocalStorage.ContainKeyAsync(AppConstants.LocalStorageCompany);
+        StateHasChanged();
     }
 
     private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
@@ -75,9 +85,14 @@
         currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
         StateHasChanged();
     }
+    private void OnCompanySelected()
+    {
+        hasCompanySelected = true;
+    }
 
     public void Dispose()
     {
         NavigationManager.LocationChanged -= OnLocationChanged;
+        Notification.OnCompanySelected -= OnCompanySelected;
     }
 }
