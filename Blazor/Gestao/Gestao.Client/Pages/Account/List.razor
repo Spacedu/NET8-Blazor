@@ -80,7 +80,7 @@
 
     private PaginatedList<Account>? Paginated;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         PageSize = Configuration.GetValue<int>("Pagination:PageSize");
 
