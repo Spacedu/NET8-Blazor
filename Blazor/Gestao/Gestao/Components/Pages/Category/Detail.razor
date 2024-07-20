@@ -1,7 +1,81 @@
 ﻿@page "/Category/Detail/{id:int}"
-<h3>Detail</h3>
+@rendermode InteractiveServer
+
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+@inject ICategoryRepository CategoryRepository
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>
+    Categoria - Confirmar exclusão
+</PageTitle>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Categoria - Confirme a exclusão do registro</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xxl-3 col-md-6 mt-3">
+                        <div>
+                            <label class="form-label">Nome</label>
+                            <br />
+                            @Category!.Name
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="d-flex justify-content-between">
+                        <a href="/Category/List" class="btn btn-light">Voltar</a>
+                        <button @onclick="Remove" type="button" class="btn btn-soft-danger">
+                            <i class="ri-delete-bin-line"></i> Confirmar exclusão
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @code {
-    [Parameter]
-    public int Id { get; set; }
+    [Parameter] public int Id { get; set; }
+
+    private Category Category { get; set; } = new();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var category = await CategoryRepository.Get(Id);
+
+        if (category is not null)
+            Category = category;
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            if (Category.Id == 0)
+            {
+                await JS.InvokeVoidAsync("alert", "A categoria selecionada não existe no banco!");
+                NavigationManager.NavigateTo("/Category/List");
+                return;
+            }
+            var company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
+
+            if (Category!.CompanyId != company!.Id)
+            {
+                await JS.InvokeVoidAsync("alert", $"A categoria não pertence a empresa '{company.LegalName}'!");
+                NavigationManager.NavigateTo("/Category/List");
+            }
+        }
+    }
+
+    private async Task Remove()
+    {
+        await CategoryRepository.Delete(Category.Id);
+
+        await JS.InvokeVoidAsync("alert", "Registro excluído com sucesso!");
+        NavigationManager.NavigateTo("/Category/List");
+    }
 }
