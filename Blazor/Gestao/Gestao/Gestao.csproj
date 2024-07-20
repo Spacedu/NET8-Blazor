@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\Pages\Account\" />
     <Folder Include="Components\Pages\Category\" />
     <Folder Include="Components\Pages\Financial\" />
   </ItemGroup>
