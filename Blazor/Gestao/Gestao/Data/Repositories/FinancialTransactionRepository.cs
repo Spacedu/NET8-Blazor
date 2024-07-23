@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Gestao.Data.Repositories
 {
-    public class FinanacialTransactionRepository : IFinanacialTransactionRepository
+    public class FinancialTransactionRepository : IFinancialTransactionRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public FinanacialTransactionRepository(ApplicationDbContext db)
+        public FinancialTransactionRepository(ApplicationDbContext db)
         {
             _db = db;
         }

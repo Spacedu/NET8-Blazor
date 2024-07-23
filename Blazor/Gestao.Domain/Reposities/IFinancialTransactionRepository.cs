@@ -4,7 +4,7 @@ using Gestao.Domain.Enums;
 
 namespace Gestao.Domain.Repositories
 {
-    public interface IFinanacialTransactionRepository
+    public interface IFinancialTransactionRepository
     {
         Task Add(FinancialTransaction entity);
         Task Delete(int id);

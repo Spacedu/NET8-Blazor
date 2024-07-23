@@ -29,6 +29,6 @@ builder.Services.AddScoped<CompanyOnSelectedNotification>();
 builder.Services.AddScoped<IAccountRepository, AccountService>();
 builder.Services.AddScoped<ICategoryRepository, CategoryService>();
 builder.Services.AddScoped<ICompanyRepository, CompanyService>();
-builder.Services.AddScoped<IFinanacialTransactionRepository, FinanacialTransactionService>();
+builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionService>();
 
 await builder.Build().RunAsync();

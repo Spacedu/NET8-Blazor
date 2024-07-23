@@ -6,11 +6,11 @@ using System.Net.Http.Json;
 
 namespace Gestao.Client.Services
 {
-    public class FinanacialTransactionService : IFinanacialTransactionRepository
+    public class FinancialTransactionService : IFinancialTransactionRepository
     {
         private readonly HttpClient _httpClient;
 
-        public FinanacialTransactionService(HttpClient httpClient)
+        public FinancialTransactionService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

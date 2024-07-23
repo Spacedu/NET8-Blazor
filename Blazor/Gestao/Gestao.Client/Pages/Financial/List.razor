@@ -2,9 +2,126 @@
 @attribute [Authorize]
 @rendermode InteractiveAuto
 
-<h3>List</h3>
+@inject IFinancialTransactionRepository FinancialTransactionRepository
+@inject IConfiguration Configuration
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>
+    Conta a @Type - Lista
+</PageTitle>
+<div class="card">
+    <div class="card-header align-items-center d-flex">
+        <h4 class="card-title mb-0 flex-grow-1">Conta a @Type</h4>
+        <div class="flex-shrink-0">
+            <a href="/Financial/@Type/Add" class="btn btn-primary btn-sm material-shadow-none">
+                <i class="ri-file-list-3-line align-middle"></i> Cadastrar
+            </a>
+        </div>
+    </div><!-- end card header -->
+
+    <div class="card-body">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Digite sua pesquisa" @bind="SearchWord">
+                <button class="btn btn-outline-success material-shadow-none" type="button" @onclick="OnSearch">Pesquisar</button>
+            </div>
+        </div>
+        <div class="table-responsive mt-4" style="margin-left: -16px; margin-right: -16px;">
+            <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
+                <thead class="text-muted table-light">
+                    <tr>
+                        <th scope="col">Data da competência</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Paginated == null)
+                    {
+                        <tr>
+                            <td colspan="4">Carregando...</td>
+                        </tr>
+                    }
+                    else if (Paginated.Items.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="4">Nenhum registro!</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Paginated.Items)
+                        {
+                            <tr>
+                                <td>
+                                    @item.ReferenceDate.ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    @item.Description
+                                </td>
+                                <td>
+                                    @(item.AmoundPaid.HasValue ? item.AmoundPaid.Value.ToString("C") : item.Amount.ToString("C"))
+                                </td>
+                                <td>
+                                    <a href="/Financial/@Type/Edit/@item.Id" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
+                                    <a href="/Financial/@Type/Detail/@item.Id" class="btn btn-sm btn-soft-danger"><i class="ri-delete-bin-line"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <Pagination Paginated="@Paginated" OnPageChanged="@OnPageChanged" />
+    </div>
+</div>
 
 @code {
     [Parameter]
     public string? Type { get; set; }
+
+    private int PageIndex = 1;
+    private int PageSize;
+    private string SearchWord = string.Empty;
+    private Company? Company;
+
+    private PaginatedList<FinancialTransaction>? Paginated;
+
+    protected override void OnInitialized()
+    {
+        PageSize = Configuration.GetValue<int>("Pagination:PageSize");
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+            return;
+
+        Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
+        await LoadDataAsync();
+        StateHasChanged();
+    }
+
+    private async Task OnSearch()
+    {
+        PageIndex = 1;
+        await LoadDataAsync();
+    }
+    private async Task OnPageChanged(int pageNumber)
+    {
+        PageIndex = pageNumber;
+        await LoadDataAsync();
+    }
+    private async Task LoadDataAsync()
+    {
+        if (Company is not null)
+            Paginated = await FinancialTransactionRepository.GetAll(
+                Company!.Id, 
+                Type,
+                PageIndex, 
+                PageSize, 
+                SearchWord
+            );
+    }
 }

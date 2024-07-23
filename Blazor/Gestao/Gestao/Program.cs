@@ -89,7 +89,7 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IDocumentRepository, DocumentRepository>();
-builder.Services.AddScoped<IFinanacialTransactionRepository, FinanacialTransactionRepository>();
+builder.Services.AddScoped<IFinancialTransactionRepository, FinancialTransactionRepository>();
 #endregion
 
 var app = builder.Build();
@@ -156,7 +156,7 @@ app.MapGet("/api/accounts", async(
 });
 
 app.MapGet("/api/financialtransactions", async(
-    IFinanacialTransactionRepository repository,
+    IFinancialTransactionRepository repository,
     [FromQuery] TypeFinancialTransaction type,
     [FromQuery] int companyId,
     [FromQuery] int pageIndex,
