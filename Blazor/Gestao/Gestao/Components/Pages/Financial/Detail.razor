@@ -1,0 +1,10 @@
+﻿@page "/Financial/{type}/Detail/{id:int}"
+<h3>Detail</h3>
+
+@code {
+    [Parameter]
+    public string? Type { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
+}
