@@ -80,6 +80,7 @@
 @code {
     [Parameter]
     public string? Type { get; set; }
+    private TypeFinancialTransaction TypeFinancial { get; set; } = TypeFinancialTransaction.Pay;
 
     private int PageIndex = 1;
     private int PageSize;
@@ -91,7 +92,13 @@
     protected override void OnInitialized()
     {
         PageSize = Configuration.GetValue<int>("Pagination:PageSize");
-
+    }
+    protected override void OnParametersSet()
+    {
+        if (Enum.TryParse(Type, true, out TypeFinancialTransaction typeConverted))
+        {
+            TypeFinancial = typeConverted;
+        }
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -118,7 +125,7 @@
         if (Company is not null)
             Paginated = await FinancialTransactionRepository.GetAll(
                 Company!.Id, 
-                Type,
+                TypeFinancial,
                 PageIndex, 
                 PageSize, 
                 SearchWord
