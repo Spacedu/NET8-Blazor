@@ -84,14 +84,19 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="repeat" class="form-label">Repetir</label>
-                                @*<InputNumber @bind-Value="FinancialTransaction!.Repeat" autocomplete="not" class="form-control" id="repeat" />*@
+                                <InputSelect @bind-Value="FinancialTransaction!.Repeat" @bind-Value:after="RepeatChanged" class="form-control" id="repeat">
+                                    @foreach (var option in Enum.GetValues(typeof(Recurrence)))
+                                    {
+                                        <option value="@option">@option</option>
+                                    }                                    
+                                </InputSelect>
                                 <ValidationMessage For="()=> FinancialTransaction!.Repeat" />
                             </div>
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="repeatTimes" class="form-label">Vezes</label>
-                                <InputNumber @bind-Value="FinancialTransaction!.RepeatTimes" autocomplete="not" class="form-control" id="repeatTimes" />
+                                <InputNumber @bind-Value="FinancialTransaction!.RepeatTimes" disabled="@RepeatTimesDisabled" autocomplete="not" class="form-control" id="repeatTimes" />
                                 <ValidationMessage For="()=> FinancialTransaction!.RepeatTimes" />
                             </div>
                         </div>
@@ -169,6 +174,8 @@
     private List<Category>? Categories { get; set; }
     private List<Account>? Accounts { get; set; }
 
+    private bool RepeatTimesDisabled { get; set; } = true;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         //TODO - Segurança: Só deixar acessar essa página se tiver Categorias/Contas no banco.
@@ -190,5 +197,14 @@
 
         await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
         NavigationManager.NavigateTo("/Category/List");
+    }
+    private void RepeatChanged()
+    {
+        if (FinancialTransaction.Repeat == Recurrence.None) {
+            RepeatTimesDisabled = true;
+            FinancialTransaction.RepeatTimes = null;
+        }
+        else
+            RepeatTimesDisabled = false;
     }
 }
