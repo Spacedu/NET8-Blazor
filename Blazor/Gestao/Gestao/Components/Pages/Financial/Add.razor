@@ -76,6 +76,56 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="interestPenalty" class="form-label">Juros/Multas</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.InterestPenalty" autocomplete="not" class="form-control" id="interestPenalty" />
+                                <ValidationMessage For="()=> FinancialTransaction!.InterestPenalty" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="discount" class="form-label">Desconto</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.Discount" autocomplete="not" class="form-control" id="discount" />
+                                <ValidationMessage For="()=> FinancialTransaction!.Discount" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="paymentDate" class="form-label">Data pagamento</label>
+                                <InputDate @bind-Value="FinancialTransaction!.PaymentDate" autocomplete="not" class="form-control" id="paymentDate" />
+                                <ValidationMessage For="()=> FinancialTransaction!.PaymentDate" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="amoundPaid" class="form-label">Valor pago</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.AmoundPaid" autocomplete="not" class="form-control" id="amoundPaid" />
+                                <ValidationMessage For="()=> FinancialTransaction!.AmoundPaid" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <label for="observation" class="form-label">Observação</label>
+                                <InputTextArea @bind-Value="FinancialTransaction!.Observation" autocomplete="not" class="form-control" id="observation" />
+                                <ValidationMessage For="()=> FinancialTransaction!.Observation" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <label for="observation" class="form-label">Anexar documentos</label>
+                                @*<InputTextArea @bind-Value="FinancialTransaction!.Observation" autocomplete="not" class="form-control" id="observation" />*@
+                                <ValidationMessage For="()=> FinancialTransaction!.Observation" />
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mt-3">
                         <div class="d-flex justify-content-between">
                             <a href="/Category/List" class="btn btn-light">Voltar</a>
