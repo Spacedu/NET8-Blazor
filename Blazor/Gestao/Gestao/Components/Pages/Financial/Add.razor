@@ -5,16 +5,17 @@
 @inject NavigationManager NavigationManager
 @inject IFinancialTransactionRepository FinancialTransactionRepository
 @inject ICategoryRepository CategoryRepository
+@inject IAccountRepository AccountRepository
 @inject ILocalStorageService LocalStorage
 
 <PageTitle>
-    Pagar/Receber - Cadastro
+    @Type - Cadastro
 </PageTitle>
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header align-items-center d-flex">
-                <h4 class="card-title mb-0 flex-grow-1">Cadastrar Pagar/Receber</h4>
+                <h4 class="card-title mb-0 flex-grow-1">Cadastrar @Type</h4>
             </div>
             <div class="card-body">
                 <EditForm Model="FinancialTransaction" OnValidSubmit="Submit" FormName="Register">
@@ -30,7 +31,7 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="category" class="form-label">Categoria</label>
-                                <InputSelect @bind-Value="FinancialTransaction!.CategoryId" class="form-control" id="category">
+                                <InputSelect @bind-Value="FinancialTransaction!.CategoryId" class="form-select" id="category">
                                     @if(Categories is not null)
                                     {
                                         @foreach(var category in Categories)
@@ -45,7 +46,15 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="account" class="form-label">Conta</label>
-                                <InputNumber @bind-Value="FinancialTransaction!.AccountId" autocomplete="not" class="form-control" id="account" />
+                                <InputSelect @bind-Value="FinancialTransaction!.AccountId" class="form-select" id="account">
+                                    @if (Accounts is not null)
+                                    {
+                                        @foreach (var account in Accounts)
+                                        {
+                                            <option value="@account.Id">@account.Description</option>
+                                        }
+                                    }
+                                </InputSelect>
                                 <ValidationMessage For="()=> FinancialTransaction!.AccountId" />
                             </div>
                         </div>
@@ -158,12 +167,18 @@
     private Company? Company;
 
     private List<Category>? Categories { get; set; }
+    private List<Account>? Accounts { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        //TODO - Segurança: Só deixar acessar essa página se tiver categoria no banco.
-        Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
-        Categories = await CategoryRepository.GetAll(Company!.Id);
+        //TODO - Segurança: Só deixar acessar essa página se tiver Categorias/Contas no banco.
+        if(firstRender){
+            Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
+            Categories = await CategoryRepository.GetAll(Company!.Id);
+            Accounts = await AccountRepository.GetAll(Company!.Id);
+        }
+
+        StateHasChanged();
     }
 
     private async Task Submit()
