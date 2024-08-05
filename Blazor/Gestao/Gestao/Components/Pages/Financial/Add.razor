@@ -1,7 +1,110 @@
 ﻿@page "/Financial/{type}/Add"
-<h3>Add</h3>
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+@inject IFinancialTransactionRepository FinancialTransactionRepository
+@inject ILocalStorageService LocalStorage
+
+<PageTitle>
+    Pagar/Receber - Cadastro
+</PageTitle>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Cadastrar Pagar/Receber</h4>
+            </div>
+            <div class="card-body">
+                <EditForm Model="FinancialTransaction" OnValidSubmit="Submit" FormName="Register">
+                    <DataAnnotationsValidator />
+                    <div class="row">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="description" class="form-label">Descrição</label>
+                                <InputText @bind-Value="FinancialTransaction!.Description" autocomplete="not" class="form-control" id="description" />
+                                <ValidationMessage For="()=> FinancialTransaction!.Description" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="category" class="form-label">Categoria</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.CategoryId" autocomplete="not" class="form-control" id="category" />
+                                <ValidationMessage For="()=> FinancialTransaction!.CategoryId" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="account" class="form-label">Conta</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.AccountId" autocomplete="not" class="form-control" id="account" />
+                                <ValidationMessage For="()=> FinancialTransaction!.AccountId" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="referenceDate" class="form-label">Data da competência</label>
+                                <InputDate @bind-Value="FinancialTransaction!.ReferenceDate" autocomplete="not" class="form-control" id="referenceDate" />
+                                <ValidationMessage For="()=> FinancialTransaction!.ReferenceDate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="dueDate" class="form-label">Data vencimento</label>
+                                <InputDate @bind-Value="FinancialTransaction!.DueDate" autocomplete="not" class="form-control" id="dueDate" />
+                                <ValidationMessage For="()=> FinancialTransaction!.DueDate" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="ammount" class="form-label">Valor</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.Amount" autocomplete="not" class="form-control" id="ammount" />
+                                <ValidationMessage For="()=> FinancialTransaction!.Amount" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="repeat" class="form-label">Repetir</label>
+                                @*<InputNumber @bind-Value="FinancialTransaction!.Repeat" autocomplete="not" class="form-control" id="repeat" />*@
+                                <ValidationMessage For="()=> FinancialTransaction!.Repeat" />
+                            </div>
+                        </div>
+                        <div class="col-xxl-3 col-md-6">
+                            <div>
+                                <label for="repeatTimes" class="form-label">Vezes</label>
+                                <InputNumber @bind-Value="FinancialTransaction!.RepeatTimes" autocomplete="not" class="form-control" id="repeatTimes" />
+                                <ValidationMessage For="()=> FinancialTransaction!.RepeatTimes" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="d-flex justify-content-between">
+                            <a href="/Category/List" class="btn btn-light">Voltar</a>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code {
     [Parameter]
     public string? Type { get; set; }
+
+
+    [SupplyParameterFromForm]
+    private FinancialTransaction FinancialTransaction { get; set; } = new() { };
+
+
+    private async Task Submit()
+    {
+        FinancialTransaction.CreatedAt = DateTimeOffset.Now;
+        //FinancialTransaction.CompanyId = Company!.Id;
+
+        await FinancialTransactionRepository.Add(FinancialTransaction);
+
+        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        NavigationManager.NavigateTo("/Category/List");
+    }
 }
