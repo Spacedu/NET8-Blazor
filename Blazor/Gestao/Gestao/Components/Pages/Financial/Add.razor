@@ -1,7 +1,10 @@
 ﻿@page "/Financial/{type}/Add"
+@rendermode InteractiveServer
+
 @inject IJSRuntime JS
 @inject NavigationManager NavigationManager
 @inject IFinancialTransactionRepository FinancialTransactionRepository
+@inject ICategoryRepository CategoryRepository
 @inject ILocalStorageService LocalStorage
 
 <PageTitle>
@@ -27,7 +30,15 @@
                         <div class="col-xxl-3 col-md-6">
                             <div>
                                 <label for="category" class="form-label">Categoria</label>
-                                <InputNumber @bind-Value="FinancialTransaction!.CategoryId" autocomplete="not" class="form-control" id="category" />
+                                <InputSelect @bind-Value="FinancialTransaction!.CategoryId" class="form-control" id="category">
+                                    @if(Categories is not null)
+                                    {
+                                        @foreach(var category in Categories)
+                                        {
+                                            <option value="@category.Id">@category.Name</option>
+                                        }
+                                    }
+                                </InputSelect>
                                 <ValidationMessage For="()=> FinancialTransaction!.CategoryId" />
                             </div>
                         </div>
@@ -76,7 +87,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-xxl-3 col-md-6">
                             <div>
@@ -142,10 +152,19 @@
     [Parameter]
     public string? Type { get; set; }
 
-
     [SupplyParameterFromForm]
     private FinancialTransaction FinancialTransaction { get; set; } = new() { };
 
+    private Company? Company;
+
+    private List<Category>? Categories { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //TODO - Segurança: Só deixar acessar essa página se tiver categoria no banco.
+        Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
+        Categories = await CategoryRepository.GetAll(Company!.Id);
+    }
 
     private async Task Submit()
     {
