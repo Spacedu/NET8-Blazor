@@ -167,7 +167,7 @@
     public string? Type { get; set; }
 
     [SupplyParameterFromForm]
-    private FinancialTransaction FinancialTransaction { get; set; } = new() { };
+    private FinancialTransaction FinancialTransaction { get; set; } = new() { ReferenceDate = DateTimeOffset.Now, DueDate = DateTimeOffset.Now  };
 
     private Company? Company;
 
