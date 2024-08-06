@@ -32,6 +32,7 @@
                             <div>
                                 <label for="category" class="form-label">Categoria</label>
                                 <InputSelect @bind-Value="FinancialTransaction!.CategoryId" class="form-select" id="category">
+                                    <option value="0">--Selecione--</option>
                                     @if(Categories is not null)
                                     {
                                         @foreach(var category in Categories)
@@ -47,6 +48,7 @@
                             <div>
                                 <label for="account" class="form-label">Conta</label>
                                 <InputSelect @bind-Value="FinancialTransaction!.AccountId" class="form-select" id="account">
+                                    <option value="0">--Selecione--</option>
                                     @if (Accounts is not null)
                                     {
                                         @foreach (var account in Accounts)
@@ -60,7 +62,7 @@
                         </div>
                         <div class="col-xxl-3 col-md-6">
                             <div>
-                                <label for="referenceDate" class="form-label">Data da competência</label>
+                                <label for="referenceDate" class="form-label">Data competência</label>
                                 <InputDate @bind-Value="FinancialTransaction!.ReferenceDate" autocomplete="not" class="form-control" id="referenceDate" />
                                 <ValidationMessage For="()=> FinancialTransaction!.ReferenceDate" />
                             </div>
@@ -190,13 +192,14 @@
 
     private async Task Submit()
     {
+        FinancialTransaction.TypeFinancialTransaction = (Type == TypeFinancialTransaction.Pay.ToString()) ? TypeFinancialTransaction.Pay : TypeFinancialTransaction.Receive;
         FinancialTransaction.CreatedAt = DateTimeOffset.Now;
-        //FinancialTransaction.CompanyId = Company!.Id;
+        FinancialTransaction.CompanyId = Company!.Id;
 
         await FinancialTransactionRepository.Add(FinancialTransaction);
 
         await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
-        NavigationManager.NavigateTo("/Category/List");
+        NavigationManager.NavigateTo($"/Financial/{Type}/List");
     }
     private void RepeatChanged()
     {

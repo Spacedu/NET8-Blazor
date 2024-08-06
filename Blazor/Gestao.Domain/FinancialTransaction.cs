@@ -1,5 +1,6 @@
 ﻿using Gestao.Domain.Enums;
 using Gestao.Domain.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace Gestao.Domain
 {
@@ -7,9 +8,15 @@ namespace Gestao.Domain
     {
         public int Id { get; set; }
         public TypeFinancialTransaction TypeFinancialTransaction { get; set; }
+
+        [Required(ErrorMessage = "O campo 'Descrição' é obrigatório!")]
+        [MinLength(3, ErrorMessage = "O campo 'Descrição' deve ter pelo menos {1} caracteres!")]
         public string Description { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "O campo 'Data competência' é obrigatório!")]
         public DateTimeOffset ReferenceDate { get; set; }
-        public DateTimeOffset DueDate { get; set; }
+
+        public DateTimeOffset? DueDate { get; set; }
         public decimal? Amount { get; set; }
         public Recurrence Repeat { get; set; }
         public int? RepeatTimes { get; set; }

@@ -61,7 +61,7 @@
                                     @item.Description
                                 </td>
                                 <td>
-                                    @(item.AmoundPaid.HasValue ? item.AmoundPaid.Value.ToString("C") : item.Amount!.Value.ToString("C"))
+                                    @(item.AmoundPaid.HasValue ? item.AmoundPaid.Value.ToString("C") : item.Amount.HasValue ? item.Amount.Value.ToString("C") : "-")
                                 </td>
                                 <td>
                                     <a href="/Financial/@Type/Edit/@item.Id" class="btn btn-sm btn-soft-info"><i class="ri-edit-line"></i></a>
