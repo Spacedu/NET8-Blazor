@@ -85,10 +85,10 @@
                             <div>
                                 <label for="repeat" class="form-label">Repetir</label>
                                 <InputSelect @bind-Value="FinancialTransaction!.Repeat" @bind-Value:after="RepeatChanged" class="form-control" id="repeat">
-                                    @foreach (var option in Enum.GetValues(typeof(Recurrence)))
+                                    @foreach (Recurrence option in Enum.GetValues(typeof(Recurrence)))
                                     {
-                                        <option value="@option">@option</option>
-                                    }                                    
+                                        <option value="@option">@option.GetDisplayName()</option>
+                                    }
                                 </InputSelect>
                                 <ValidationMessage For="()=> FinancialTransaction!.Repeat" />
                             </div>
