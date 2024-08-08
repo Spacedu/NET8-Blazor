@@ -15,9 +15,12 @@ namespace Gestao.Domain
         public string Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O campo é obrigatório!")]
+        [Range(typeof(DateTimeOffset), "1/1/2000", "1/1/2300", ErrorMessage = "A data deve estar entre {1:dd/MM/yyyy} e {2:dd/MM/yyyy}")]
         public DateTimeOffset ReferenceDate { get; set; }
 
+        [Range(typeof(DateTimeOffset), "1/1/2000", "1/1/2300", ErrorMessage = "A data deve estar entre {1:dd/MM/yyyy} e {2:dd/MM/yyyy}")]
         public DateTimeOffset? DueDate { get; set; }
+
         [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         [RequiredIfAmoundPaidFilled]
         public decimal? Amount { get; set; }
@@ -34,6 +37,7 @@ namespace Gestao.Domain
         public decimal? Discount { get; set; }
 
         [RequiredIfAmoundPaidFilled]
+        [Range(typeof(DateTimeOffset), "1/1/2000", "1/1/2300", ErrorMessage = "A data deve estar entre {1:dd/MM/yyyy} e {2:dd/MM/yyyy}")]
         public DateTimeOffset? PaymentDate { get; set; }
 
         [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
