@@ -34,6 +34,7 @@ namespace Gestao.Domain
         public decimal? InterestPenalty { get; set; }
 
         [Range(0, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
+        [DiscountNotBeGreaterThanAmount]
         public decimal? Discount { get; set; }
 
         [RequiredIfAmoundPaidFilled]
