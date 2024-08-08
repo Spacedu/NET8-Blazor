@@ -30,10 +30,10 @@ namespace Gestao.Domain
         [Range(1, 10000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public int? RepeatTimes { get; set; }
 
-        [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
+        [Range(0, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public decimal? InterestPenalty { get; set; }
 
-        [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
+        [Range(0, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public decimal? Discount { get; set; }
 
         [RequiredIfAmoundPaidFilled]
@@ -41,6 +41,7 @@ namespace Gestao.Domain
         public DateTimeOffset? PaymentDate { get; set; }
 
         [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
+        [AmoundPaidValue]
         public decimal? AmoundPaid { get; set; }
 
         public string? Observation { get; set; }
