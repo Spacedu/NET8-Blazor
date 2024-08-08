@@ -10,20 +10,22 @@ namespace Gestao.Domain
         public int Id { get; set; }
         public TypeFinancialTransaction TypeFinancialTransaction { get; set; }
 
-        [Required(ErrorMessage = "O campo 'Descrição' é obrigatório!")]
-        [MinLength(3, ErrorMessage = "O campo 'Descrição' deve ter pelo menos {1} caracteres!")]
+        [Required(ErrorMessage = "O campo é obrigatório!")]
+        [MinLength(3, ErrorMessage = "O campo deve ter pelo menos {1} caracteres!")]
         public string Description { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "O campo 'Data competência' é obrigatório!")]
+        [Required(ErrorMessage = "O campo é obrigatório!")]
         public DateTimeOffset ReferenceDate { get; set; }
 
         public DateTimeOffset? DueDate { get; set; }
+        [RequiredIfAmoundPaidFilled]
         public decimal? Amount { get; set; }
         public Recurrence Repeat { get; set; }
         [RequiredRepeatTimes]
         public int? RepeatTimes { get; set; }
         public decimal? InterestPenalty { get; set; }
         public decimal? Discount { get; set; }
+        [RequiredIfAmoundPaidFilled]
         public DateTimeOffset? PaymentDate { get; set; }
         public decimal? AmoundPaid { get; set; }
         public string? Observation { get; set; }
