@@ -18,16 +18,27 @@ namespace Gestao.Domain
         public DateTimeOffset ReferenceDate { get; set; }
 
         public DateTimeOffset? DueDate { get; set; }
+        [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         [RequiredIfAmoundPaidFilled]
         public decimal? Amount { get; set; }
         public Recurrence Repeat { get; set; }
+
         [RequiredRepeatTimes]
+        [Range(1, 10000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public int? RepeatTimes { get; set; }
+
+        [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public decimal? InterestPenalty { get; set; }
+
+        [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public decimal? Discount { get; set; }
+
         [RequiredIfAmoundPaidFilled]
         public DateTimeOffset? PaymentDate { get; set; }
+
+        [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         public decimal? AmoundPaid { get; set; }
+
         public string? Observation { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? DeletedAt { get; set; }
