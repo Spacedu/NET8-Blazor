@@ -18,6 +18,7 @@ namespace Gestao.Domain
         [Range(typeof(DateTimeOffset), "1/1/2000", "1/1/2300", ErrorMessage = "A data deve estar entre {1:dd/MM/yyyy} e {2:dd/MM/yyyy}")]
         public DateTimeOffset ReferenceDate { get; set; }
 
+        [RequiredIfAmoundPaidFilled]
         [Range(typeof(DateTimeOffset), "1/1/2000", "1/1/2300", ErrorMessage = "A data deve estar entre {1:dd/MM/yyyy} e {2:dd/MM/yyyy}")]
         public DateTimeOffset? DueDate { get; set; }
 
@@ -51,10 +52,15 @@ namespace Gestao.Domain
 
         public ICollection<Document>? Documents { get; set; }
 
+
         public int? CompanyId { get; set; }
         public Company? Company { get; set; }
+        
+        [RequiredIfAmoundPaidFilled]
         public int? AccountId { get; set; }
-        public Account? Account { get; set; }        
+        public Account? Account { get; set; }
+
+        [RequiredIfAmoundPaidFilled]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
     }
