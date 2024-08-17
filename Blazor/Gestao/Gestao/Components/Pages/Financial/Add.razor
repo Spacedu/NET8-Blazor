@@ -145,9 +145,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div>
-                                <label for="observation" class="form-label">Anexar documentos</label>
-                                @*<InputTextArea @bind-Value="FinancialTransaction!.Observation" autocomplete="not" class="form-control" id="observation" />*@
-                                <ValidationMessage For="()=> FinancialTransaction!.Observation" />
+                                <label for="anexar" class="form-label">Anexar documentos</label>
+                                <InputFile class="form-control" id="anexar" OnChange="UploadFile" />
                             </div>
                         </div>
                     </div>
@@ -209,5 +208,15 @@
         }
         else
             RepeatTimesDisabled = false;
+    }
+    private async Task UploadFile(InputFileChangeEventArgs args)
+    {
+        //TODO - Job - Excluir arquivos que não estão associados a uma Transação Financeira.
+        var file = args.File;
+
+        if(file is not null)
+        {
+            //TODO - Upload (wwwroot) www.site.com.br/images/i.jpg
+        }
     }
 }
