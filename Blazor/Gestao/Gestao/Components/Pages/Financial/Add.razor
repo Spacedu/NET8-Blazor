@@ -7,7 +7,7 @@
 @inject ICategoryRepository CategoryRepository
 @inject IAccountRepository AccountRepository
 @inject ILocalStorageService LocalStorage
-
+@inject IWebHostEnvironment WebHostEnvironment
 <PageTitle>
     @Type - Cadastro
 </PageTitle>
@@ -148,6 +148,21 @@
                                 <label for="anexar" class="form-label">Anexar documentos</label>
                                 <InputFile class="form-control" id="anexar" OnChange="UploadFile" />
                             </div>
+                            @if (FinancialTransaction.Documents is not null && FinancialTransaction.Documents.Count > 0){
+                                <table class="table table-striped">
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Opções</th>
+                                    </tr>
+                                    @foreach(var doc in FinancialTransaction.Documents)
+                                    {
+                                        <tr>
+                                            <td>@doc.Name</td>
+                                            <td><button class="btn btn-danger">Excluir</button></td>
+                                        </tr>
+                                    }
+                                </table>
+                            }
                         </div>
                     </div>
 
@@ -168,7 +183,7 @@
     public string? Type { get; set; }
 
     [SupplyParameterFromForm]
-    private FinancialTransaction FinancialTransaction { get; set; } = new() { ReferenceDate = DateTimeOffset.Now, DueDate = DateTimeOffset.Now  };
+    private FinancialTransaction FinancialTransaction { get; set; } = new() { ReferenceDate = DateTimeOffset.Now, DueDate = DateTimeOffset.Now, Documents = new List<Document>()  };
 
     private Company? Company;
 
@@ -216,7 +231,24 @@
 
         if(file is not null)
         {
-            //TODO - Upload (wwwroot) www.site.com.br/images/i.jpg
+            //TODO - Upload (wwwroot) www.site.com.br/uploads/TCC 01-{Guid}.pdf
+
+            //Uploads - TCC 01.pdf (TCC 01-{Guid}.pdf)
+            //C:/Users/elias/Desktop/Gestao/Gestao/wwwroot/uplodads/TCC 01-{Guid}.pdf
+
+            var fileName = Path.GetFileNameWithoutExtension(file.Name) + "-" + Guid.NewGuid() + Path.GetExtension(file.Name);
+            var filePath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads", fileName);
+
+            await using var fileStream = new FileStream(filePath, FileMode.Create);
+            await file.OpenReadStream().CopyToAsync(fileStream);
+
+            var doc = new Document();
+            doc.Path = fileName;
+            doc.Name = Path.GetFileName(file.Name);
+            doc.CreatedAt = DateTimeOffset.Now;
+
+            if (FinancialTransaction.Documents is not null)
+                FinancialTransaction.Documents.Add(doc);
         }
     }
 }
