@@ -168,8 +168,8 @@
                                             @foreach (var doc in FinancialTransaction.Documents)
                                             {
                                                 <tr>
-                                                    <td>@doc.Name</td>
-                                                    <td><button class="btn btn-danger waves-effect waves-light">Excluir</button></td>
+                                                    <td><a href="/uploads/@doc.Path" target="_blank">@doc.Name</a></td>
+                                                    <td><button class="btn btn-sm btn-danger waves-effect waves-light" @onclick="()=>RemoveFile(doc)">Excluir</button></td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -282,5 +282,16 @@
         {
             await JS.InvokeVoidAsync("alert", $"Ocorreu um erro! {e.Message}");
         }
+    }
+
+    private void RemoveFile(Document doc)
+    {
+        var filePath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads", doc.Path);
+
+        if (File.Exists(filePath))
+            File.Delete(filePath);
+
+        if(FinancialTransaction.Documents is not null)
+            FinancialTransaction.Documents.Remove(doc);
     }
 }
