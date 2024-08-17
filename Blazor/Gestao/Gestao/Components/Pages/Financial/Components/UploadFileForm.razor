@@ -43,7 +43,7 @@
     public bool IsEditForm { get; set; }
 
     [Parameter]
-    public List<Document>? Documents { get; set; }
+    public List<Document> Documents { get; set; } = new List<Document>();
 
     [Parameter]
     public EventCallback<Document> OnUploaded { get; set; }
@@ -54,8 +54,6 @@
 
     private async Task UploadFile(InputFileChangeEventArgs args)
     {
-        if (Documents is null)
-            Documents = new List<Document>();
         //TODO - Job - Excluir arquivos que não estão associados a uma Transação Financeira.
         var file = args.File;
 
@@ -83,6 +81,8 @@
                 doc.Path = fileName;
                 doc.Name = Path.GetFileName(file.Name);
                 doc.CreatedAt = DateTimeOffset.Now;
+
+                Documents.Add(doc);
 
                 await OnUploaded.InvokeAsync(doc);
 
