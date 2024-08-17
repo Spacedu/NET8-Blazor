@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <UploadFileForm OnUploaded="Uploaded" OnRemoved="Removed" />
+    <UploadFileForm Documents="Documents" OnUploaded="Uploaded" OnRemoved="Removed" />
 
     <div class="row mt-3">
         <div class="d-flex justify-content-between">
@@ -151,6 +151,7 @@
     [Parameter]
     public EventCallback<FinancialTransaction> OnSave { get; set; }
 
+    private List<Document> Documents;
     private Company? Company;
 
     private List<Category>? Categories { get; set; }
@@ -158,6 +159,10 @@
 
     private bool RepeatTimesDisabled { get; set; } = true;
 
+    protected override void OnParametersSet()
+    {
+        Documents = FinancialTransaction.Documents!.ToList();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

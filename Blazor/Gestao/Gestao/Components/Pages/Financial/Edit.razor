@@ -1,5 +1,28 @@
 ﻿@page "/Financial/{type}/Edit/{id:int}"
-<h3>Edit</h3>
+@inject IJSRuntime JS
+@inject NavigationManager NavigationManager
+@inject IFinancialTransactionRepository FinancialTransactionRepository
+
+
+<PageTitle>
+    @Type - Atualizar
+</PageTitle>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Atualizar @Type</h4>
+            </div>
+            <div class="card-body">
+                @if (FinancialTransaction is not null)
+                {
+                    <FinancialTransactionForm IsEditForm="@true" FinancialTransaction="FinancialTransaction" Type="@Type" OnSave="Save" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @code {
     [Parameter]
@@ -7,4 +30,17 @@
 
     [Parameter]
     public int Id { get; set; }
+    public FinancialTransaction FinancialTransaction { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        FinancialTransaction = (await FinancialTransactionRepository.Get(Id))!;
+    }
+    private async Task Save(FinancialTransaction financialTransaction)
+    {
+        await FinancialTransactionRepository.Update(financialTransaction);
+
+        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        NavigationManager.NavigateTo($"/Financial/{Type}/List");
+    }
 }
