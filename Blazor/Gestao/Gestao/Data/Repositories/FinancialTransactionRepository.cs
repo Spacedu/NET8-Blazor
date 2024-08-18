@@ -30,7 +30,7 @@ namespace Gestao.Data.Repositories
         }
         public async Task<FinancialTransaction?> Get(int id)
         {
-            return await _db.FinancialTransactions.OrderByDescending(a=>a.ReferenceDate).Include(a=>a.Documents).SingleOrDefaultAsync(a => a.Id == id);
+            return await _db.FinancialTransactions.OrderByDescending(a=>a.ReferenceDate).Include(a=>a.Category).Include(a=>a.Account).Include(a=>a.Documents).SingleOrDefaultAsync(a => a.Id == id);
         }
         public async Task Add(FinancialTransaction entity)
         {

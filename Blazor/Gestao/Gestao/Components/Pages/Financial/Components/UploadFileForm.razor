@@ -51,10 +51,8 @@
     [Parameter]
     public EventCallback<Document> OnRemoved { get; set; }
 
-
     private async Task UploadFile(InputFileChangeEventArgs args)
     {
-        //TODO - Job - Excluir arquivos que não estão associados a uma Transação Financeira.
         var file = args.File;
 
         try
@@ -66,10 +64,6 @@
                     await JS.InvokeVoidAsync("alert", $"O arquivo passou do limite permitido ({MaxFileSize / (1024 * 1024)}MB)");
                     return;
                 }
-                //TODO - Upload (wwwroot) www.site.com.br/uploads/TCC 01-{Guid}.pdf
-
-                //Uploads - TCC 01.pdf (TCC 01-{Guid}.pdf)
-                //C:/Users/elias/Desktop/Gestao/Gestao/wwwroot/uplodads/TCC 01-{Guid}.pdf
 
                 var fileName = Path.GetFileNameWithoutExtension(file.Name) + "-" + Guid.NewGuid() + Path.GetExtension(file.Name);
                 var filePath = Path.Combine(WebHostEnvironment.WebRootPath, "uploads", fileName);
