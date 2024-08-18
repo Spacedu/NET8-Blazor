@@ -5,6 +5,8 @@
 @inject NavigationManager NavigationManager
 @inject IAccountRepository AccountRepository
 @inject ILocalStorageService LocalStorage
+@inject ApplicationDbContext DB
+
 <PageTitle>
     Conta - Atualizar
 </PageTitle>
@@ -42,7 +44,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="d-flex justify-content-between">
-                            <a href="/Account/List" class="btn btn-light">Voltar</a>
+                            <a href="/Account/List" class="btn btn-light" @onclick="BackRollback">Voltar</a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </div>
@@ -92,5 +94,9 @@
 
         await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
         NavigationManager.NavigateTo("/Account/List");
+    }
+    private void BackRollback(MouseEventArgs e)
+    {
+        DB.ChangeTracker.Clear();
     }
 }

@@ -5,6 +5,8 @@
 @inject NavigationManager NavigationManager
 @inject ICategoryRepository CategoryRepository
 @inject ILocalStorageService LocalStorage
+@inject ApplicationDbContext DB
+
 <PageTitle>
     Categoria - Atualizar
 </PageTitle>
@@ -28,7 +30,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="d-flex justify-content-between">
-                            <a href="/Category/List" class="btn btn-light">Voltar</a>
+                            <a href="/Category/List" class="btn btn-light" @onclick="BackRollback">Voltar</a>
                             <button type="submit" class="btn btn-primary">Salvar</button>
                         </div>
                     </div>
@@ -75,9 +77,13 @@
 
     private async Task Submit()
     {
-    await CategoryRepository.Update(Category);
+        await CategoryRepository.Update(Category);
 
         await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
         NavigationManager.NavigateTo("/Category/List");
+    }
+    private void BackRollback(MouseEventArgs e)
+    {
+        DB.ChangeTracker.Clear();
     }
 }
