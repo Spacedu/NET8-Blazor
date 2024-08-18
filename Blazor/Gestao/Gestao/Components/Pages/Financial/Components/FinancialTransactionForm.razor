@@ -2,7 +2,7 @@
 @inject ICategoryRepository CategoryRepository
 @inject IAccountRepository AccountRepository
 @inject ILocalStorageService LocalStorage
-
+@inject ApplicationDbContext DB
 <EditForm Model="FinancialTransaction" OnValidSubmit="Submit" FormName="Register">
     <DataAnnotationsValidator />
     <div class="row">
@@ -128,11 +128,11 @@
         </div>
     </div>
 
-    <UploadFileForm Documents="Documents" OnUploaded="Uploaded" OnRemoved="Removed" />
+    <UploadFileForm IsEditForm="IsEditForm" Documents="Documents" OnUploaded="Uploaded" OnRemoved="Removed" />
 
     <div class="row mt-3">
         <div class="d-flex justify-content-between">
-            <a href="/Financial/@Type/List" class="btn btn-light">Voltar</a>
+            <a href="/Financial/@Type/List" class="btn btn-light" @onclick="BackRollback">Voltar</a>
             <button type="submit" class="btn btn-primary">Salvar</button>
         </div>
     </div>
@@ -172,9 +172,9 @@
             Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
             Categories = await CategoryRepository.GetAll(Company!.Id);
             Accounts = await AccountRepository.GetAll(Company!.Id);
-        }
 
-        StateHasChanged();
+            StateHasChanged();
+        }
     }
 
     private async Task Submit()
@@ -207,5 +207,9 @@
         {
             FinancialTransaction.Documents.Remove(doc);
         }
+    }
+    private void BackRollback()
+    {
+        DB.ChangeTracker.Clear();
     }
 }
