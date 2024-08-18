@@ -1,10 +1,181 @@
 ﻿@page "/Financial/{type}/Detail/{id:int}"
-<h3>Detail</h3>
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+@inject IFinancialTransactionRepository FinancialTransactionRepository
 
+@if (Type is not null)
+{
+    <PageTitle>
+        @TypeFinancialTransactionToString.Converter(Type).ToUpper() - Excluir
+    </PageTitle>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                @if (Type is not null)
+                {
+                    <h4 class="card-title mb-0 flex-grow-1">Excluir @TypeFinancialTransactionToString.Converter(Type)</h4>
+                }
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="description" class="form-label">Descrição</label>
+                            @FinancialTransaction!.Description
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="category" class="form-label">Categoria</label>
+                            <InputSelect @bind-Value="FinancialTransaction!.CategoryId" class="form-select" id="category">
+                                <option value="0">--Selecione--</option>
+                                @if (Categories is not null)
+                                {
+                                    @foreach (var category in Categories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                }
+                            </InputSelect>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="account" class="form-label">Conta</label>
+                            <InputSelect @bind-Value="FinancialTransaction!.AccountId" class="form-select" id="account">
+                                <option value="0">--Selecione--</option>
+                                @if (Accounts is not null)
+                                {
+                                    @foreach (var account in Accounts)
+                                    {
+                                        <option value="@account.Id">@account.Description</option>
+                                    }
+                                }
+                            </InputSelect>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="referenceDate" class="form-label">Data competência</label>
+                            @FinancialTransaction!.ReferenceDate.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="dueDate" class="form-label">Data vencimento</label>
+                            @if (FinancialTransaction!.DueDate.HasValue)
+                                @FinancialTransaction!.DueDate.Value.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="ammount" class="form-label">Valor</label>
+                            @if (FinancialTransaction!.Amount.HasValue)
+                                @FinancialTransaction!.Amount.Value.ToString("C")
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="repeat" class="form-label">Repetir</label>
+                            @FinancialTransaction!.Repeat.GetDisplayName()
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="repeatTimes" class="form-label">Vezes</label>
+                            @FinancialTransaction!.RepeatTimes
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="interestPenalty" class="form-label">Juros/Multas</label>
+                            @if (FinancialTransaction!.InterestPenalty.HasValue)
+                                @FinancialTransaction!.InterestPenalty.Value.ToString("C")
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="discount" class="form-label">Desconto</label>
+                            @if(FinancialTransaction!.Discount.HasValue)
+                                @FinancialTransaction!.Discount.Value.ToString("C")
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="paymentDate" class="form-label">Data pagamento</label>
+                            @if(FinancialTransaction!.PaymentDate.HasValue)
+                                @FinancialTransaction!.PaymentDate.Value.ToString("dd/MM/yyyy")
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-md-6">
+                        <div>
+                            <label for="amoundPaid" class="form-label">Valor pago</label>
+                            @if(FinancialTransaction!.AmoundPaid.HasValue)
+                                @FinancialTransaction!.AmoundPaid.Value.ToString("C")
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <label for="observation" class="form-label">Observação</label>
+                            @FinancialTransaction!.Observation
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 mt-4 mb-4">
+                    @if (FinancialTransaction.Documents is not null && FinancialTransaction.Documents.Count > 0)
+                    {
+                        <div class="table-responsive table-card">
+                            <table class="table align-middle table-nowrap table-striped-columns mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var doc in FinancialTransaction.Documents)
+                                    {
+                                        <tr>
+                                            <td><a href="/uploads/@doc.Path" target="_blank">@doc.Name</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+
+                <div class="row mt-3">
+                    <div class="d-flex justify-content-between">
+                        <a href="/Financial/@Type/List" class="btn btn-light">Voltar</a>
+                        <button type="button" class="btn btn-danger">Excluir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @code {
     [Parameter]
     public string? Type { get; set; }
 
     [Parameter]
     public int Id { get; set; }
+
+    public FinancialTransaction FinancialTransaction { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        FinancialTransaction = (await FinancialTransactionRepository.Get(Id))!;
+    }
 }
