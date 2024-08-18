@@ -6,12 +6,18 @@
 @inject IConfiguration Configuration
 @inject ILocalStorageService LocalStorage
 
-<PageTitle>
-    Conta a @Type - Lista
-</PageTitle>
+@if (Type is not null)
+{
+    <PageTitle>
+        Conta a @TypeFinancialTransactionToString.ConverterInfinitive(Type) - Lista
+    </PageTitle>
+}
 <div class="card">
     <div class="card-header align-items-center d-flex">
-        <h4 class="card-title mb-0 flex-grow-1">Conta a @Type</h4>
+        @if (Type is not null)
+        {
+            <h4 class="card-title mb-0 flex-grow-1">Conta a @TypeFinancialTransactionToString.ConverterInfinitive(Type)</h4>
+        }
         <div class="flex-shrink-0">
             <a href="/Financial/@Type/Add" class="btn btn-primary btn-sm material-shadow-none">
                 <i class="ri-file-list-3-line align-middle"></i> Cadastrar
@@ -124,10 +130,10 @@
     {
         if (Company is not null)
             Paginated = await FinancialTransactionRepository.GetAll(
-                Company!.Id, 
+                Company!.Id,
                 TypeFinancial,
-                PageIndex, 
-                PageSize, 
+                PageIndex,
+                PageSize,
                 SearchWord
             );
     }
