@@ -1,9 +1,11 @@
 ﻿@page "/Financial/{type}/Add"
+@using Coravel.Queuing.Interfaces
+@using Gestao.Libraries.Queues
 @rendermode InteractiveServer
 @inject IJSRuntime JS
 @inject NavigationManager NavigationManager
 @inject IFinancialTransactionRepository FinancialTransactionRepository
-
+@inject IQueue Queue
 @if(Type is not null){
 <PageTitle>
         @TypeFinancialTransactionToString.Converter(Type).ToUpper() - CADASTRO
@@ -30,16 +32,20 @@
 
     private async Task Save(FinancialTransaction financialTransaction)
     {
-        if(financialTransaction.Repeat != Recurrence.None)
-        {
-            //TODO - Queue -> Criar as Transação(parcelas,contas recorrentes).
-
-            //TODO - Queue -> Criar Grupo.
-        }
         financialTransaction.CreatedAt = DateTimeOffset.Now;
         await FinancialTransactionRepository.Add(financialTransaction);
 
-        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        if (financialTransaction.Repeat != Recurrence.None)
+        {
+            Queue.QueueInvocableWithPayload<FinancialTransactionRepeatInvocable, FinancialTransaction>(financialTransaction);
+            await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso! As parcelas serão criadas em alguns minutos!");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        }
+
+        
         NavigationManager.NavigateTo($"/Financial/{Type}/List");
     }
 }

@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Coravel;
 using Gestao.Client.Libraries.Notifications;
 using Gestao.Client.Pages;
 using Gestao.Components;
@@ -8,6 +9,7 @@ using Gestao.Data.Repositories;
 using Gestao.Domain.Enums;
 using Gestao.Domain.Repositories;
 using Gestao.Libraries.Mail;
+using Gestao.Libraries.Queues;
 using Gestao.Libraries.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -65,7 +67,12 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddDefaultTokenProviders();
 #endregion
 
-#region Dependecy Injection
+#region Dependecy Injection (Email, Repositories, Extra Library: LocalStorage, Queuing)
+builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddQueue();
+
+builder.Services.AddScoped<FinancialTransactionRepeatInvocable>();
+
 builder.Services.AddSingleton<SmtpClient>(options =>
 {
     var smtp = new SmtpClient();
@@ -82,7 +89,6 @@ builder.Services.AddSingleton<SmtpClient>(options =>
 });
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, EmailSender>();
 builder.Services.AddSingleton<ICepService, CepService>();
-builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<CompanyOnSelectedNotification>();
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
