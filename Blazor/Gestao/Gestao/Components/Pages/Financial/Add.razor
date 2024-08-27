@@ -30,6 +30,12 @@
 
     private async Task Save(FinancialTransaction financialTransaction)
     {
+        if(financialTransaction.Repeat != Recurrence.None)
+        {
+            //TODO - Queue -> Criar as Transação(parcelas,contas recorrentes).
+
+            //TODO - Queue -> Criar Grupo.
+        }
         financialTransaction.CreatedAt = DateTimeOffset.Now;
         await FinancialTransactionRepository.Add(financialTransaction);
 

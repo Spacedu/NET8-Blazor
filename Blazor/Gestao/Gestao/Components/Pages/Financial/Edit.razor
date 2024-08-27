@@ -43,6 +43,15 @@
     }
     private async Task Save(FinancialTransaction financialTransaction)
     {
+        if (financialTransaction.Repeat != Recurrence.None)
+        {
+            //RepeatTimes = 10 > 11 (+1)
+            //RepeatTimes = 10 > 8 (-2)
+
+            //RepeatGroup = RepeatTimes < 10 > 8 (Alerta)
+
+            //TODO - Queue -> Criar/Remover as Transação(parcelas,contas recorrentes).
+        }
         await FinancialTransactionRepository.Update(financialTransaction);
 
         await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");

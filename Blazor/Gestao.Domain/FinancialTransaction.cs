@@ -25,6 +25,7 @@ namespace Gestao.Domain
         [Range(0.1, 10000000000, ErrorMessage = "O campo deve ter entre {1} e {2}")]
         [RequiredIfAmoundPaidFilled]
         public decimal? Amount { get; set; }
+        public int? RepeatGroup { get; set; }
         public Recurrence Repeat { get; set; }
 
         [RequiredRepeatTimes]
