@@ -38,6 +38,11 @@ namespace Gestao.Client.Services
             return entities!;
         }
 
+        public Task<int> GetCountTransactionsSameGroup(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task Update(FinancialTransaction entity)
         {
             throw new NotImplementedException();

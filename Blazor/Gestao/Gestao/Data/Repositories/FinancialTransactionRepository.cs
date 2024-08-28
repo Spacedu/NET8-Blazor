@@ -52,5 +52,10 @@ namespace Gestao.Data.Repositories
                 await _db.SaveChangesAsync();
             }
         }
+
+        public async Task<int> GetCountTransactionsSameGroup(int Id)
+        {
+            return await _db.FinancialTransactions.Where(a=>a.RepeatGroup == Id).CountAsync();
+        }
     }
 }

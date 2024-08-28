@@ -10,6 +10,7 @@ namespace Gestao.Domain.Repositories
         Task Delete(int id);
         Task<FinancialTransaction?> Get(int id);
         Task<PaginatedList<FinancialTransaction>> GetAll(int companyId, TypeFinancialTransaction type, int pageIndex, int pageSize, string searchWord);
+        Task<int> GetCountTransactionsSameGroup(int Id);
         Task Update(FinancialTransaction entity);
     }
 }

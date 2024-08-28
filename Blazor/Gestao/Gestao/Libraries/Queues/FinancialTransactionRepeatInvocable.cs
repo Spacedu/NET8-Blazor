@@ -15,15 +15,31 @@ namespace Gestao.Libraries.Queues
 
         public FinancialTransaction Payload { get; set; }
 
-        public Task Invoke()
+        public async Task Invoke()
         {
             //TODO - Queue -> Criar Grupo (Id = Id da primeira parcela).
 
             //TODO - Cadastrar -> Novas transações
+            //TODO - Editando -> None > 0parc -> 10parc -> Novas transações
+            var startPoint = 1;
+            RegisterNewTransactions(startPoint);
+
+
+
+            //TODO - Editando -> 5parc -> 10parc -> Novas transações (6-10).
+            int transactionsSameGroup = await _repository.GetCountTransactionsSameGroup(Payload.Id);
+            RegisterNewTransactions(transactionsSameGroup);
+
+            //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
+            //TODO - Editando -> 10parc -> 0parc -> Excluir (2-10) -> Repeat = None.
+        }
+
+        private void RegisterNewTransactions(int startPoint)
+        {
             if (Payload.Repeat != Domain.Enums.Recurrence.None)
             {
                 var repeatTimes = Payload.RepeatTimes - 1;
-                var startPoint = 1;
+
 
                 for (int i = startPoint; i <= repeatTimes; i++)
                 {
@@ -41,15 +57,10 @@ namespace Gestao.Libraries.Queues
                     financial.CompanyId = Payload.CompanyId;
                     financial.AccountId = Payload.AccountId;
                     financial.CategoryId = Payload.CategoryId;
-                    
+
                     _repository.Add(financial);
                 }
             }
-            
-            //TODO - Editando -> 0parc -> 10parc -> Novas transações
-            //TODO - Editando -> 5parc -> 10parc -> Novas transações (6-10).
-            //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
-            //TODO - Editando -> 10parc -> 0parc -> Excluir (2-10) -> Repeat = None.
         }
     }
 }
