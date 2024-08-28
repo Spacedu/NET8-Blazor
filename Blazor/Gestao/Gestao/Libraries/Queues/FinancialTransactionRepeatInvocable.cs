@@ -9,11 +9,13 @@ namespace Gestao.Libraries.Queues
 
         public Task Invoke()
         {
-            //Payload.RepeatTimes - 1;
-            throw new NotImplementedException();
-            //TODO - Queue -> Criar as Transação(parcelas,contas recorrentes).
+            //TODO - Queue -> Criar Grupo (Id = Id da primeira parcela).
 
-            //TODO - Queue -> Criar Grupo.
+            //TODO - Cadastrar -> Novas transações
+            //TODO - Editando -> 0parc -> 10parc -> Novas transações
+            //TODO - Editando -> 5parc -> 10parc -> Novas transações (6-10).
+            //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
+            //TODO - Editando -> 10parc -> 0parc -> Excluir (2-10) -> Repeat = None.
         }
     }
 }
