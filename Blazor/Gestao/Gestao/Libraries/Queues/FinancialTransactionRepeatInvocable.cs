@@ -1,10 +1,18 @@
 ﻿using Coravel.Invocable;
 using Gestao.Domain;
+using Gestao.Domain.Repositories;
 
 namespace Gestao.Libraries.Queues
 {
     public class FinancialTransactionRepeatInvocable : IInvocable, IInvocableWithPayload<FinancialTransaction>
     {
+        private IFinancialTransactionRepository _repository;
+
+        public FinancialTransactionRepeatInvocable(IFinancialTransactionRepository repository)
+        {
+            _repository = repository;
+        }
+
         public FinancialTransaction Payload { get; set; }
 
         public Task Invoke()
@@ -12,6 +20,32 @@ namespace Gestao.Libraries.Queues
             //TODO - Queue -> Criar Grupo (Id = Id da primeira parcela).
 
             //TODO - Cadastrar -> Novas transações
+            if (Payload.Repeat != Domain.Enums.Recurrence.None)
+            {
+                var repeatTimes = Payload.RepeatTimes - 1;
+                var startPoint = 1;
+
+                for (int i = startPoint; i <= repeatTimes; i++)
+                {
+                    var financial = new FinancialTransaction();
+                    financial.TypeFinancialTransaction = Payload.TypeFinancialTransaction;
+                    financial.Description = Payload.Description;
+                    financial.ReferenceDate = Payload.ReferenceDate; //TODO - Recalcular a data
+                    financial.DueDate = Payload.DueDate; //TODO - Recalcular a data
+                    financial.Amount = Payload.Amount;
+                    financial.RepeatGroup = Payload.Id;
+                    financial.Repeat = Domain.Enums.Recurrence.None;
+                    financial.RepeatTimes = null;
+                    financial.CreatedAt = DateTimeOffset.Now;
+
+                    financial.CompanyId = Payload.CompanyId;
+                    financial.AccountId = Payload.AccountId;
+                    financial.CategoryId = Payload.CategoryId;
+                    
+                    _repository.Add(financial);
+                }
+            }
+            
             //TODO - Editando -> 0parc -> 10parc -> Novas transações
             //TODO - Editando -> 5parc -> 10parc -> Novas transações (6-10).
             //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
