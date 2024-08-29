@@ -4,7 +4,7 @@
     <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
         <div class="col-sm">
             <div class="text-muted">
-                Mostrando página <span class="fw-semibold">@Paginated.PageIndex</span> de <span class="fw-semibold">@Paginated.TotalPages</span>.
+                Mostrando página <span class="fw-semibold">@(Paginated.TotalPages == 0 ? "0" : Paginated.PageIndex)</span> de <span class="fw-semibold">@Paginated.TotalPages</span>.
             </div>
         </div>
         <div class="col-sm-auto  mt-3 mt-sm-0">

@@ -8,50 +8,66 @@ namespace Gestao.Data.Repositories
 {
     public class CompanyRepository : ICompanyRepository
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IDbContextFactory<ApplicationDbContext> _factory;
 
-        public CompanyRepository(ApplicationDbContext db)
+        public CompanyRepository(IDbContextFactory<ApplicationDbContext> factory)
         {
-            _db = db;
+            _factory = factory;
         }
+
         public async Task<PaginatedList<Company>> GetAll(Guid applicationUserId, int pageIndex, int pageSize, string searchWord = "")
         {
-            var items = await _db.Companies
+            using (var _db = _factory.CreateDbContext())
+            {
+                var items = await _db.Companies
                 .Where(a => a.UserId == applicationUserId)
-                .Where(a=>a.TradeName.Contains(searchWord) || a.LegalName.Contains(searchWord))
-                .OrderBy(a=>a.TradeName)
+                .Where(a => a.TradeName.Contains(searchWord) || a.LegalName.Contains(searchWord))
+                .OrderBy(a => a.TradeName)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-            var count = await _db.Companies.Where(a => a.UserId == applicationUserId).Where(a => a.TradeName.Contains(searchWord) || a.LegalName.Contains(searchWord)).CountAsync();
-            
-            int totalPages = (int)Math.Ceiling((decimal)count / pageSize);
+                var count = await _db.Companies.Where(a => a.UserId == applicationUserId).Where(a => a.TradeName.Contains(searchWord) || a.LegalName.Contains(searchWord)).CountAsync();
 
-            return new PaginatedList<Company>(items, pageIndex, totalPages);
+                int totalPages = (int)Math.Ceiling((decimal)count / pageSize);
+
+                return new PaginatedList<Company>(items, pageIndex, totalPages);
+            }
         }
         public async Task<Company?> Get(int id)
         {
-            return await _db.Companies.SingleOrDefaultAsync(a => a.Id == id);
+            using (var _db = _factory.CreateDbContext())
+            {
+                return await _db.Companies.SingleOrDefaultAsync(a => a.Id == id);
+            }
         }
         public async Task Add(Company entity)
         {
-            _db.Companies.Add(entity);
-            await _db.SaveChangesAsync();
+            using (var _db = _factory.CreateDbContext())
+            {
+                _db.Companies.Add(entity);
+                await _db.SaveChangesAsync();
+            }
         }
         public async Task Update(Company entity)
         {
-            _db.Companies.Update(entity);
-            await _db.SaveChangesAsync();
+            using (var _db = _factory.CreateDbContext())
+            {
+                _db.Companies.Update(entity);
+                await _db.SaveChangesAsync();
+            }
         }
         public async Task Delete(int id)
         {
-            var entity = await Get(id);
-
-            if (entity is not null)
+            using (var _db = _factory.CreateDbContext())
             {
-                _db.Companies.Remove(entity);
-                await _db.SaveChangesAsync();
+                var entity = await Get(id);
+
+                if (entity is not null)
+                {
+                    _db.Companies.Remove(entity);
+                    await _db.SaveChangesAsync();
+                }
             }
         }
     }
