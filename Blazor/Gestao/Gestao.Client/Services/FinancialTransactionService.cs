@@ -25,6 +25,11 @@ namespace Gestao.Client.Services
             throw new NotImplementedException();
         }
 
+        public Task Delete(FinancialTransaction entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<FinancialTransaction?> Get(int id)
         {
             throw new NotImplementedException();
@@ -39,6 +44,11 @@ namespace Gestao.Client.Services
         }
 
         public Task<int> GetCountTransactionsSameGroup(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<FinancialTransaction>> GetTransactionsSameGroup(int Id)
         {
             throw new NotImplementedException();
         }

@@ -48,14 +48,25 @@ namespace Gestao.Data.Repositories
 
             if (entity is not null)
             {
-                _db.FinancialTransactions.Remove(entity);
-                await _db.SaveChangesAsync();
+                await Delete(entity);
             }
+        }
+
+        public async Task Delete(FinancialTransaction entity)
+        {
+            _db.FinancialTransactions.Remove(entity);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<int> GetCountTransactionsSameGroup(int Id)
         {
-            return await _db.FinancialTransactions.Where(a=>a.RepeatGroup == Id).CountAsync();
+            return await _db.FinancialTransactions.Where(a=>a.RepeatGroup == Id).OrderBy(a=>a.Id).CountAsync();
         }
+
+        public async Task<List<FinancialTransaction>> GetTransactionsSameGroup(int Id)
+        {
+            return await _db.FinancialTransactions.Where(a => a.RepeatGroup == Id).OrderBy(a => a.Id).ToListAsync();
+        }
+
     }
 }
