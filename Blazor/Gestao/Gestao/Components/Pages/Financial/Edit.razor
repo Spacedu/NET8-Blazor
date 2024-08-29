@@ -50,7 +50,8 @@
         await FinancialTransactionRepository.Update(financialTransaction);
         Queue.QueueInvocableWithPayload<FinancialTransactionRepeatInvocable, FinancialTransaction>(financialTransaction);
 
-        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso!");
+        await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso! Caso tenha parcelas, o processamento pode demorar alguns segundos para acontecer.");
+
         NavigationManager.NavigateTo($"/Financial/{Type}/List");
     }
 }

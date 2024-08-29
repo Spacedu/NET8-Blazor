@@ -40,7 +40,7 @@
         if (financialTransaction.Repeat != Recurrence.None)
         {
             Queue.QueueInvocableWithPayload<FinancialTransactionRepeatInvocable, FinancialTransaction>(financialTransaction);
-            await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso! As parcelas serão criadas em alguns minutos!");
+            await JS.InvokeVoidAsync("alert", "Registro salvo com sucesso! As parcelas serão criadas em alguns segundos!");
         }
         else
         {

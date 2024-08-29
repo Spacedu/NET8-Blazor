@@ -32,10 +32,8 @@ namespace Gestao.Libraries.Queues
                 await RegisterNewTransactions(countTransactionsSameGroup);
             }
 
-            //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
             await TransactionsReduction(countTransactionsSameGroup);
 
-            //TODO - Editando -> 10parc -> 0parc -> Excluir (2-10) -> Repeat = None.
             await RepeatTransactionsRemove(countTransactionsSameGroup);
         }
 
@@ -55,7 +53,7 @@ namespace Gestao.Libraries.Queues
                 var transactions = await _repository.GetTransactionsSameGroup(Payload.Id);
                 for (int i = 2; i <= countTransactionsSameGroup; i++)
                 {
-                    await _repository.Delete(transactions.ElementAt(i));
+                    await _repository.Delete(transactions.ElementAt(i-1));
                 }
             }
         }
@@ -67,7 +65,7 @@ namespace Gestao.Libraries.Queues
                 var transactions = await _repository.GetTransactionsSameGroup(Payload.Id);
                 for (int i = countTransactionsSameGroup; i > Payload.RepeatTimes; i--)
                 {
-                    await _repository.Delete(transactions.ElementAt(i));
+                    await _repository.Delete(transactions.ElementAt(i-1));
                 }
             }
         }
