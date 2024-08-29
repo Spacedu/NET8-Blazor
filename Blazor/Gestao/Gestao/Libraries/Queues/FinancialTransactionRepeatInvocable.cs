@@ -31,12 +31,6 @@ namespace Gestao.Libraries.Queues
             {
                 await RegisterNewTransactions(countTransactionsSameGroup);
             }
-            //TODO - Cadastrar -> Novas transações
-            //TODO - Editando -> None > 0parc -> 10parc -> Novas transações
-            
-
-            //TODO - Editando -> 5parc -> 10parc -> Novas transações (6-10).
-            
 
             //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
             await TransactionsReduction(countTransactionsSameGroup);
