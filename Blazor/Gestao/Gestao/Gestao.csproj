@@ -11,6 +11,7 @@
     <ProjectReference Include="..\..\Gestao.Domain\Gestao.Domain.csproj" />
     <ProjectReference Include="..\Gestao.Client\Gestao.Client.csproj" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Coravel" Version="5.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="8.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="8.0.4" />

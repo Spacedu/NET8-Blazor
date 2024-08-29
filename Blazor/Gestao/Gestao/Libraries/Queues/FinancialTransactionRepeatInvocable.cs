@@ -20,19 +20,38 @@ namespace Gestao.Libraries.Queues
         {
             int startPoint = 1;
             int countTransactionsSameGroup = await _repository.GetCountTransactionsSameGroup(Payload.Id);
+            
+            await AssignRepeatGroupToPayload();
+
+            if(countTransactionsSameGroup == 0)
+            {
+                await RegisterNewTransactions(startPoint);
+            }
+            else
+            {
+                await RegisterNewTransactions(countTransactionsSameGroup);
+            }
             //TODO - Cadastrar -> Novas transações
             //TODO - Editando -> None > 0parc -> 10parc -> Novas transações
-
-            await RegisterNewTransactions(startPoint);
+            
 
             //TODO - Editando -> 5parc -> 10parc -> Novas transações (6-10).
-            await RegisterNewTransactions(countTransactionsSameGroup);
+            
 
             //TODO - Editando -> 10parc -> 7parc -> Excluir (10-8).
             await TransactionsReduction(countTransactionsSameGroup);
 
             //TODO - Editando -> 10parc -> 0parc -> Excluir (2-10) -> Repeat = None.
             await RepeatTransactionsRemove(countTransactionsSameGroup);
+        }
+
+        private async Task AssignRepeatGroupToPayload()
+        {
+            if (Payload.Repeat != Recurrence.None)
+            {
+                Payload.RepeatGroup = Payload.Id;
+                await _repository.Update(Payload);
+            }
         }
 
         private async Task RepeatTransactionsRemove(int countTransactionsSameGroup)
@@ -64,7 +83,6 @@ namespace Gestao.Libraries.Queues
             if (Payload.Repeat != Recurrence.None)
             {
                 var repeatTimes = Payload.RepeatTimes - 1;
-
 
                 for (int i = startPoint; i <= repeatTimes; i++)
                 {
