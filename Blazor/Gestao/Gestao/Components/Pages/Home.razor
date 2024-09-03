@@ -4,31 +4,9 @@
 @rendermode InteractiveServer
 
 <PageTitle>Painel</PageTitle>
-<Gestao.Components.Pages.Painel.Totalizadores />
-                                    
 <div class="row">
-    <div class="col-sm-6 col-xl-3">
-        <!-- Simple card -->
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-2">Contas a pagar</h4>
-                <p class="card-text">Gerencie os lançamentos das contas a pagar da sua empresa.</p>
-                <div class="text-end">
-                    <a href="javascript:void(0);" class="btn btn-primary">Gerenciar</a>
-                </div>
-            </div>
-        </div><!-- end card -->
-    </div><!-- end col -->
-    <div class="col-sm-6 col-xl-3">
-        <!-- Simple card -->
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-2">Contas a receber</h4>
-                <p class="card-text">Gerencie os lançamentos das contas a receber da sua empresa.</p>
-                <div class="text-end">
-                    <a href="javascript:void(0);" class="btn btn-primary">Gerenciar</a>
-                </div>
-            </div>
-        </div><!-- end card -->
-    </div><!-- end col -->
+    <Totalizadores />
+    <AccountBalance />
 </div>
+
+<AccessLink />
