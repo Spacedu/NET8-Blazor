@@ -68,7 +68,7 @@
                 <ValidationMessage For="()=> FinancialTransaction!.Amount" />
             </div>
         </div>
-        @if (FinancialTransaction.RepeatGroup.HasValue && FinancialTransaction.RepeatGroup == FinancialTransaction.Id)
+        @if ( IsEditForm == false || (IsEditForm && FinancialTransaction.RepeatGroup.HasValue && FinancialTransaction.RepeatGroup == FinancialTransaction.Id))
         {
             <div class="col-xxl-3 col-md-6">
                 <div>
