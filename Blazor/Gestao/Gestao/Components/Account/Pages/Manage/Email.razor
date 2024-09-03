@@ -12,9 +12,9 @@
 @inject IdentityUserAccessor UserAccessor
 @inject NavigationManager NavigationManager
 
-<PageTitle>Manage email</PageTitle>
+<PageTitle>Gerenciar e-mail</PageTitle>
 
-<h3>Manage email</h3>
+<h3>Gerenciar e-mail</h3>
 
 <StatusMessage Message="@message"/>
 <div class="row">
@@ -39,16 +39,16 @@
             {
                 <div class="form-floating mb-3">
                     <input type="text" value="@email" class="form-control" placeholder="Please enter your email." disabled />
-                    <label for="email" class="form-label">Email</label>
+                    <label for="email" class="form-label">E-mail</label>
                     <button type="submit" class="btn btn-link" form="send-verification-form">Send verification email</button>
                 </div>
             }
             <div class="form-floating mb-3">
                 <InputText @bind-Value="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" placeholder="Please enter new email." />
-                <label for="new-email" class="form-label">New email</label>
+                <label for="new-email" class="form-label">Novo e-mail</label>
                 <ValidationMessage For="() => Input.NewEmail" class="text-danger" />
             </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Change email</button>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Mudar e-mail</button>
         </EditForm>
     </div>
 </div>
