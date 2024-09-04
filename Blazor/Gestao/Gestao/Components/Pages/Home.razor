@@ -1,6 +1,6 @@
 ﻿@page "/"
 @attribute [Authorize]
-@inject ApplicationDbContext DB
+@inherits PageBase
 @rendermode InteractiveServer
 
 <PageTitle>Painel</PageTitle>
@@ -10,3 +10,14 @@
 </div>
 
 <AccessLink />
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var company = await LocalStorage.GetItemAsync<Domain.Company>(AppConstants.LocalStorageCompany);
+            if (company is null)
+                NavigationManager.NavigateTo("/Company/List");
+        }
+    }
+}

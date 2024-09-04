@@ -8,5 +8,6 @@ namespace Gestao.Components.Pages
     {
         [Inject] public ILocalStorageService LocalStorage { get; set; } = null!;
         [Inject] public ApplicationDbContext DB { get; set; } = null!;
+        [Inject] public NavigationManager NavigationManager { get; set; } = null!;
     }
 }

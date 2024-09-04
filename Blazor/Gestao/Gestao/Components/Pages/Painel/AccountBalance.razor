@@ -64,6 +64,8 @@
         if (firstRender)
         {
             Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
+            if (Company is null) return;
+
             AccountReports = DB.Accounts
                 .Where(a => a.CompanyId == Company!.Id)
                 .Include(a => a.FinancialTransactions)
