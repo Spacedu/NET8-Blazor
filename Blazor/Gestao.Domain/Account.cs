@@ -22,5 +22,6 @@ namespace Gestao.Domain
         public Company? Company { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset? DeletedAt { get; set; }
+        public ICollection<FinancialTransaction>? FinancialTransactions { get; set; }
     }
 }

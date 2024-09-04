@@ -1,39 +1,90 @@
-﻿<div class="col-xl-9">
-    <div class="card">
-        <div class="card-header align-items-center d-flex">
-            <h4 class="card-title mb-0 flex-grow-1">Saldo das contas</h4>
-        </div><!-- end card header -->
+﻿@using Microsoft.EntityFrameworkCore
+@inherits PageBase
+@if (AccountReports is not null && AccountReports.Count > 0)
+{
+    <div class="col-xl-9">
+        <div class="card">
+            <div class="card-header align-items-center d-flex">
+                <h4 class="card-title mb-0 flex-grow-1">Saldo das contas</h4>
+            </div><!-- end card header -->
 
-        <div class="card-body">
-            <div class="table-responsive table-card">
-                <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
-                    <thead class="text-muted table-light">
-                        <tr>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Total pago</th>
-                            <th scope="col">Total recebido</th>
-                            <th scope="col">Saldo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Banco do Brasil (Saldo inicial: R$ 500,00)
-                            </td>
-                            <td>
-                                R$ 1000,00
-                            </td>
-                            <td>
-                                R$ 500,00
-                            </td>
-                            <td>
-                                R$ 0,0
-                            </td>
-                        </tr><!-- end tr -->
-                        
-                    </tbody><!-- end tbody -->
-                </table><!-- end table -->
+            <div class="card-body">
+                <div class="table-responsive table-card">
+                    <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
+                        <thead class="text-muted table-light">
+                            <tr>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Total pago</th>
+                                <th scope="col">Total recebido</th>
+                                <th scope="col">Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var account in AccountReports)
+                            {
+                                <tr>
+                                    <td>
+                                        @account.Description (Saldo inicial: @account.InitialBalance.ToString("C"))
+                                    </td>
+                                    <td class="text-danger">
+                                        @account.Payed.ToString("C")
+                                    </td>
+                                    <td class="text-success">
+                                        @account.Receive.ToString("C")
+                                    </td>
+                                    <td>
+                                        @if (account.Balance > 0)
+                                        {
+                                            <span class="badge bg-success-subtle text-success">@account.Balance.ToString("C")</span>
+                                        }
+                                        else if (account.Balance == 0)
+                                        {
+                                            <span class="badge bg-info-subtle text-info">@account.Balance.ToString("C")</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger-subtle text-danger">@account.Balance.ToString("C")</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody><!-- end tbody -->
+                    </table><!-- end table -->
+                </div>
             </div>
-        </div>
-    </div> <!-- .card-->
-</div> <!-- .col-->
+        </div> <!-- .card-->
+    </div> <!-- .col-->
+}
+@code {
+    private Company? Company;
+    private List<AccountReportViewModel>? AccountReports { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            Company = await LocalStorage.GetItemAsync<Company>(AppConstants.LocalStorageCompany);
+            AccountReports = DB.Accounts
+                .Where(a => a.CompanyId == Company!.Id)
+                .Include(a => a.FinancialTransactions)
+                .Select(a => new AccountReportViewModel()
+                    {
+                        Description = a.Description,
+                        InitialBalance = a.Balance,
+                        Payed = a.FinancialTransactions!.Where(x => x.TypeFinancialTransaction == TypeFinancialTransaction.Pay && x.AmoundPaid.HasValue).Sum(y => y.AmoundPaid!.Value),
+                        Receive = a.FinancialTransactions!.Where(x => x.TypeFinancialTransaction == TypeFinancialTransaction.Receive && x.AmoundPaid.HasValue).Sum(y => y.AmoundPaid!.Value),
+                        Balance = a.Balance + a.FinancialTransactions!.Where(x => x.TypeFinancialTransaction == TypeFinancialTransaction.Receive && x.AmoundPaid.HasValue).Sum(y => y.AmoundPaid!.Value) - a.FinancialTransactions!.Where(x => x.TypeFinancialTransaction == TypeFinancialTransaction.Pay && x.AmoundPaid.HasValue).Sum(y => y.AmoundPaid!.Value)
+                    }).ToList();
+            StateHasChanged();
+        }
+    }
+
+    class AccountReportViewModel
+    {
+        public string Description { get; set; } = null!;
+        public decimal Payed { get; set; }
+        public decimal Receive { get; set; }
+        public decimal Balance { get; set; }
+        public decimal InitialBalance { get; set; }
+    }
+}
