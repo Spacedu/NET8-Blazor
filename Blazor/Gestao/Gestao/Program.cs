@@ -37,6 +37,7 @@ builder.Services.AddAuthentication(options =>
         options.DefaultScheme = IdentityConstants.ApplicationScheme;
         options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
     })
+    /*
     .AddGoogle(options =>
     {
         options.ClientId = builder.Configuration.GetValue<String>("OAuth:Google:ClientId")!;
@@ -52,6 +53,7 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = builder.Configuration.GetValue<String>("OAuth:Microsoft:ClientId")!;
         options.ClientSecret = builder.Configuration.GetValue<String>("OAuth:Microsoft:ClientSecret")!;
     })
+    */
     .AddIdentityCookies();
 #endregion
 
